@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+For development you need NPM - Node package manager
+
+After cloning this repo you have to run `npm install`
+
 ## Available Scripts
 
 In the project directory, you can run:
