@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/core-js": "^2.5.0",
+    "bootstrap": "^4.3.1",
+    "circular-json": "^0.5.9",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8"

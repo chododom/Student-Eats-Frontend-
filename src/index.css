@@ -12,3 +12,43 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.panel-body img{
+  width: 100%;
+}
+
+.jumbotron {
+  background-image: url("./stea.png");
+  opacity: 1;
+}
+
+.active{
+  color: black;
+}
+
+#myNavbar {
+  display: block;
+}
+#myNavbar *{
+  display: inline;
+}
+#myNavbar ul{
+  display: block;
+  width: 100%;
+}
+#myNavbar ul li{
+  display: inline-block;
+  width: 25%;
+  padding: 50px;
+}
+
+.jumbotron *{
+  color: white;
+  opacity: 1;
+}
+
+footer{
+  background-color: black;
+  color: white;
+  height: 100px;
+  font-size: x-large;
+}
