@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 src/components/MyApp.js
+src/components/Header.js
+src/components/Navigation.js
+src/components/MyTester.js
+
 # testing
 /coverage
 

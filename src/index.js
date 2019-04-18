@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import logo from './stea.png';
-import MyApp from './components/MyApp';
 import Navigation from "./components/Navigation";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+
 
 ReactDOM.render(
     <div>
@@ -30,7 +29,7 @@ ReactDOM.render(
                         <div className="panel-body"><img src={logo}
                                                          className="img-responsive"  alt="Image" /></div>
                         <div className="panel-footer">Buy 50 mobiles and get a gift card</div>
-                    </div
+                    </div>
                 </div>
                 <div className="col-sm-4">
                     <div className="panel panel-success">

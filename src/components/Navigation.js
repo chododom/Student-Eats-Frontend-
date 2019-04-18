@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import MyApp from "./MyApp";
 
 export default class Navigation extends Component{
     render() {
