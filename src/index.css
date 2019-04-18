@@ -16,9 +16,14 @@ code {
   width: 100%;
 }
 
-.jumbotron {
+#HeaderWrapper {
   background-image: url("./stea.png");
   opacity: 1;
+}
+#FooterWrapper{
+  background-color: black;
+  margin-bottom: 0px;
+  margin-top: 32px;
 }
 
 .active{
@@ -44,11 +49,4 @@ code {
 .jumbotron *{
   color: white;
   opacity: 1;
-}
-
-footer{
-  background-color: black;
-  color: white;
-  height: 100px;
-  font-size: x-large;
 }

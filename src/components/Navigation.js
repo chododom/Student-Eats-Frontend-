@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
+
+
 
 export default class Navigation extends Component{
     render() {
         return (
-            <nav className="navbar navbar-inverse">
-                <div className="container-fluid">
-                    <div className="navbar-header">
-                        <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                        </button>
-                        <a className="navbar-brand" href="#">Logo</a>
-                    </div>
-                    <div className="collapse navbar-collapse" id="myNavbar">
-                        <ul className="nav navbar-nav">
-                            <li className="active">><a href="#">Objednávka</a></li>
-                            <li><a href="#">Donáška</a></li>
-                            <li><a href="#">Profil</a></li>
-                            <li><a href="#"><span className="glyphicon glyphicon-user"></span> Košík</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <Navbar bg="light" expand="lg" sticky="top">
+                <Navbar.Brand href="#home">Student Eats</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                        <Nav.Link href="#objednavka">Objednávka</Nav.Link>
+                        <Nav.Link href="#donaska">Donáška</Nav.Link>
+                        <Nav.Link href="#profil">Profil</Nav.Link>
+                        <Nav.Link href="#kosik">Košík</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
         );
     }
 }
