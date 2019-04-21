@@ -6,7 +6,7 @@ export default class Footer extends Component{
     render() {
         return (
             <Jumbotron id={'FooterWrapper'}>
-                <p>Frontend created by: Justýna a Čenda (backend sucks)</p>
+                <p>Frontend created by: Ta kterou nikdo nikdy neviděl a Čenda (all hail our divine leader, Dominik)</p>
             </Jumbotron>
         );
     }
