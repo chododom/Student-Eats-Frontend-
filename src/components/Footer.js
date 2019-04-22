@@ -17,7 +17,7 @@ export default class Footer extends Component{
                         <a href="#alergeny">Alergeny</a>
                     </li>
                     <li className="list-link">
-                        <a href="#objednavka">Objednávka</a>
+                        <a href="#objednavka">Menu</a>
                     </li>
                     <li className="list-link">
                         <a href="#roznaska">Roznáška</a>

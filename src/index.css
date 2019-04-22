@@ -26,10 +26,30 @@ code {
 }
 
 #ContainerCenter{
-  background: #ff4389;
+  background: #e1e3e0;
   padding: 0px;
   float: left;
   width: 80%;
+}
+
+#MenuContainer{
+  float: left;
+  width: 80%;
+}
+
+.menu-header{
+  background: darksalmon;
+  font-weight: bold;
+  font-size: 26px;
+  padding-bottom: 1%;
+  padding-top: 1%;
+  padding-left: 5%;
+}
+
+#MenuContainer ul li{
+  display: inline-block;
+  font-weight: bold;
+  padding-right: 30%;
 }
 
 #ContainerRight{
@@ -44,54 +64,8 @@ code {
   opacity: 1;
   margin: 0px;
 }
-#FooterWrapper{
-  clear: both;
-  display: block;
-  background-color: #000000;
-  margin-bottom: 0px;
-  margin-top: 80px;
-  padding-bottom: 1px;
-  padding-top: 0px;
-  border: 0px;
-}
-#FooterWrapper *{
-  display: inline;
-  height: 100%;
-}
-
-#FooterWrapper ul{
-  display: block;
-  width: 100%;
-}
-
-.foot-logo img{
-  width: 30%;
-  height: 30%;
-}
-
-#FooterWrapper ul li {
-  display: inline-block;
-  width: 14%;
-  padding: 5px;
-}
 .active{
   color: black;
-}
-
-#myNavbar {
-  display: block;
-}
-#myNavbar *{
-  display: inline;
-}
-#myNavbar ul{
-  display: block;
-  width: 100%;
-}
-#myNavbar ul li{
-  display: inline-block;
-  width: 25%;
-  padding: 50px;
 }
 
 .jumbotron *{

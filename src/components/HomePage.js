@@ -10,6 +10,14 @@ import studentsky from '../studentsky.png'
 import masarycka from '../masarycka.png'
 import fontanella from '../fontanella.png'
 
+import {
+    Route,
+    NavLink,
+    BrowserRouter,
+    Switch
+} from "react-router-dom";
+import RightContainer from "./RightContainer";
+
 export default class HomePage extends Component{
     render() {
         return (
@@ -20,13 +28,13 @@ export default class HomePage extends Component{
                     <Row>
                         <Col>
                             <div className="panel panel-primary">
-                                <div className="panel-body"><a href="#objednavka/technicka_menza"><img src={technicka}
-                                                                                                       className="img-responsive" alt="Image" /></a></div>
+                                <div className="panel-body"><NavLink to="#technicka_menza"><img src={technicka}
+                                                                                                           className="img-responsive" alt="Image" /></NavLink></div>
                             </div>
                         </Col>
                         <Col>
                             <div className="panel panel-primary">
-                                <div className="panel-body"><a href="#objednavka/masarykova_kolej"><img src={masarycka}
+                                <div className="panel-body"><a href="#masarykova_kolej"><img src={masarycka}
                                                                                                         className="img-responsive" alt="Image" /></a></div>
                             </div>
                         </Col>
@@ -34,37 +42,19 @@ export default class HomePage extends Component{
                     <Row>
                         <Col>
                             <div className="panel panel-primary">
-                                <div className="panel-body"><a href="#objednavka/studentsky_dum"><img src={studentsky}
+                                <div className="panel-body"><a href="#studentsky_dum"><img src={studentsky}
                                                                                                       className="img-responsive" alt="Image" /></a></div>
                             </div>
                         </Col>
                         <Col>
                             <div className="panel panel-primary">
-                                <div className="panel-body"><a href="#objednavka/pizzerila_LaFontanella"><img src={fontanella}
+                                <div className="panel-body"><a href="#pizzeria_LaFontanella"><img src={fontanella}
                                                                                                               className="img-responsive" alt="Image" /></a></div>
                             </div>
                         </Col>
                     </Row>
                 </Container>
-                <Container id="ContainerRight">
-                    <Row>
-                        <Col>
-                            <div className="panel panel-primary">
-                                <div className="panel-body"><a href="#objednavka/studentsky_dum"><img src={studentsky}
-                                                                                                      className="img-responsive" alt="Image" /></a></div>
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <div className="panel panel-primary">
-                                <div className="panel-body"><a href="#objednavka/pizzerila_laFontanella"><img src={fontanella}
-                                                                                                              className="img-responsive" alt="Image" /></a></div>
-                            </div>
-                        </Col>
-                    </Row>
-
-                </Container>
+                <RightContainer/>
                 <Footer />
             </div>
         );
