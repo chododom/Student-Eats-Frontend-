@@ -12,20 +12,68 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.panel-body{
+  padding: 5%;
+}
+
 .panel-body img{
-  width: 100%;
+  width: 60%;
+}
+
+.contright-header{
+  font-weight: bold;
+}
+
+#ContainerCenter{
+  background: #ff4389;
+  padding: 0px;
+  float: left;
+  width: 80%;
+}
+
+#ContainerRight{
+  background: #ff8d8d;
+  float: right;
+  width: 20%;
+  padding: 0px;
 }
 
 #HeaderWrapper {
   background-image: url("./stea.png");
   opacity: 1;
+  margin: 0px;
 }
 #FooterWrapper{
-  background-color: black;
+  clear: both;
+  display: block;
+  background-color: #000000;
   margin-bottom: 0px;
-  margin-top: 32px;
+  margin-top: 80px;
+  padding-bottom: 1px;
+  padding-top: 0px;
+  border: 0px;
+}
+#FooterWrapper *{
+  display: inline;
+  height: 100%;
 }
 
+#FooterWrapper ul{
+  display: block;
+  width: 100%;
+}
+
+.foot-logo img{
+  width: 30%;
+  height: 30%;
+}
+
+#FooterWrapper ul li {
+  display: inline-block;
+  width: 14%;
+  padding: 5px;
+}
 .active{
   color: black;
 }

@@ -16,7 +16,12 @@ export default class Navigation extends Component{
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="#objednavka">Objednávka</Nav.Link>
+                        <NavDropdown title="Objednávka" id="basic-nav-dropdown">
+                            <NavDropdown.Item href="#objednavka/technicka_menza">Technická menza</NavDropdown.Item>
+                            <NavDropdown.Item href="#objednavka/masarykova_kolej">Masarykova kolej</NavDropdown.Item>
+                            <NavDropdown.Item href="#objednavka/studentsky_dum">Studentský dům</NavDropdown.Item>
+                            <NavDropdown.Item href="#objednavka/pizzeria_LaFontanella">Pizzeria La Fontanella</NavDropdown.Item>
+                        </NavDropdown>
                         <Nav.Link href="#donaska">Donáška</Nav.Link>
                         <Nav.Link href="#profil">Profil</Nav.Link>
                         <Nav.Link href="#kosik">Košík</Nav.Link>
