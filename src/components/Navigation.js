@@ -23,7 +23,7 @@ export default class Navigation extends Component{
                             <NavDropdown.Item href="#studentsky_dum">Studentský dům</NavDropdown.Item>
                             <NavDropdown.Item href="#pizzeria_LaFontanella">Pizzeria La Fontanella</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link href="#donaska">Donáška</Nav.Link>
+                        <Nav.Link href="/new">Donáška</Nav.Link>
                         <Nav.Link href="#kosik">Košík</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
