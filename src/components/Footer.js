@@ -4,6 +4,19 @@ import Jumbotron from "react-bootstrap/es/Jumbotron";
 import logoAlpha from '../logo_alpha.png'
 
 export default class Footer extends Component{
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoggedIn: false,
+        };
+    }
+    toggleHidden () {
+        this.setState({
+            isLoggedIn: !this.state.isLoggedIn
+        })
+    }
+
     render() {
         return (
             <Jumbotron id={'FooterWrapper'}>
