@@ -8,7 +8,7 @@ export default class Header extends Component{
         console.log("Profile constructor");
         super(props);
         this.state = {
-            userId: this.props.userId,
+            userId: parseInt(this.props.userId),
             dataSet: false,
             userData: null
         };

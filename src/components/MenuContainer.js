@@ -26,6 +26,7 @@ export default class MenuContainer extends Component{
             obj.props.cartAdd(index);
         };
         var itemsList = items.map(function(item){
+            console.log(item.id);
             return <Col>
                 <div className="panel panel-primary">
                     <div className="panel-body"><img src={item.picture}
@@ -46,10 +47,9 @@ export default class MenuContainer extends Component{
                 </div>
             </Col>;
         });
-        return  <Row>{ itemsList }</Row>
+        return  <Row className="foodRow">{ itemsList }</Row>
     }
     foods(obj){
-        console.log("WAAAAA");
         console.log(this.props.food);
         var renderer = [];
         var tmpItems = [];
@@ -61,9 +61,9 @@ export default class MenuContainer extends Component{
                 tmpItems = [];
             }
         });
-/*        if ( tmpItems != [] )
+        if ( tmpItems . length > 0 )
             renderer.push(
-                this.makeCol(tmpItems));*/ // todo - change this
+                this.makeCol(tmpItems, obj)); // todo - change this
         return renderer;
     }
     render() {

@@ -16,6 +16,11 @@ import HomePage from "./components/HomePage";
 import MenuMenza from "./components/MenuMenza";
 import ErrorURL from './components/ErrorURL.js'
 import Donaska from "./components/Donaska";
+import Container from "react-bootstrap/Container";
+import Profile from "./components/Profile";
+import Login from "./components/Login";
+import Basket from "./components/Basket";
+
 
 ReactDOM.render(
     <BrowserRouter>
@@ -32,4 +37,3 @@ ReactDOM.render(
     </BrowserRouter>
 ,
 document.getElementById('root'));
-localStorage.setItem("userId", -1);

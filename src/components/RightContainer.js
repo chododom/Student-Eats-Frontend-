@@ -14,16 +14,16 @@ export default class RightContainer extends Component{
     }
     setLoginState = (isLoggedIn, userId) => {
         console.log("In my callback");
-        // todo - update session (create session)
-        this.setState({userId: userId});
+        //this.setState({userId: userId});
+        //this.setState({isLoggedIn: isLoggedIn});
         localStorage.setItem("userId", userId);
     };
 
     render() {
         return (
             <Container id="ContainerRight">
-                {this.state.isLoggedIn && <Profile userId={this.state.userId} />}
-                {!this.state.isLoggedIn && <Login callbackFromParent={this.setLoginState}/>}
+                { localStorage.getItem("userId") != null && localStorage.getItem("userId") !== 'undefined' && <Profile userId={localStorage.getItem("userId")} />}
+                { ( localStorage.getItem("userId") == null || localStorage.getItem("userId") === 'undefined' )&& <Login callbackFromParent={this.setLoginState}/>}
                 <Basket/>}
             </Container>
         );

@@ -11,6 +11,7 @@ const url = 'https://private-9dc2d6-studenteats.apiary-mock.com/canteen/1/menu';
 export default class MenuMenza extends Component{
     constructor(props) {
         super(props);
+        console.log(this.props.location.pathname);
         this.state = {
             isLoading: true,
             items: []
