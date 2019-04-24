@@ -27,7 +27,7 @@ const NewRoute = () => {
     return (
         <div>
             <p>My Route</p>
-            </div>
+              </div>
     )
 }
 // todo - replace the "/new" URL and the component NewRoute with something relevant
