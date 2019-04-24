@@ -3,10 +3,10 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import rizek from '../rizek.png'
-import svickova from '../svickova.png'
-import gulas from '../gulas.png'
-import spagety from '../spagety.png'
+import rizek from '../assets/rizek.png'
+import svickova from '../assets/svickova.png'
+import gulas from '../assets/gulas.png'
+import spagety from '../assets/spagety.png'
 import axios from "axios";
 
 export default class MenuContainer extends Component{
@@ -35,7 +35,7 @@ export default class MenuContainer extends Component{
         };
         var itemsList = items.map(function(item){
             console.log(item.id);
-            return <Col>
+            return <Col key={item.id}>
                 <div className="panel panel-primary">
                     <div className="panel-body"><img src={item.picture}
                                                      className="img-responsive" alt="Image" /></div>
@@ -55,7 +55,7 @@ export default class MenuContainer extends Component{
                 </div>
             </Col>;
         });
-        return  <Row className="foodRow">{ itemsList }</Row>
+        return  <Row className="foodRow" >{ itemsList }</Row>
     }
     foods(obj){
         console.log(this.props.food);

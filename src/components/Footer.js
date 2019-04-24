@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Jumbotron from "react-bootstrap/es/Jumbotron";
-import logoAlpha from '../logo_alpha.png'
+import logoAlpha from '../assets/logo_alpha.png'
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 

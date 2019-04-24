@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import Navigation from "./Navigation";
 import RightContainer from "./RightContainer";
 import MenuContainer from "./MenuContainer";
-import axios from "axios";
+import {steaGet} from "../services/ApiResource.js";
 
 
 export default class MenuMenza extends Component{
@@ -16,32 +16,34 @@ export default class MenuMenza extends Component{
             items: [],
             canteenId: 0
         };
+
     }
-    getCanteenId(){
+    getCanteenId(callback){
+
         switch (this.props.location.pathname) {
-            case "technicka_menza":
-                this.setState({canteenId: 1});
+            case "/technicka_menza":
+                this.setState({canteenId: 1}, callback);
                 break;
-            case "masarykova_kolej":
-                this.setState({canteenId: 2});
+            case "/masarykova_kolej":
+                this.setState({canteenId: 2}, callback);
                 break;
-            case "studentsky_dum":
-                this.setState({canteenId: 3});
+            case "/studentsky_dum":
+                this.setState({canteenId: 3}, callback);
                 break;
-            case "pizzeria_LaFontanella":
-                this.setState({canteenId: 4});
+            case "/pizzeria_LaFontanella":
+                this.setState({canteenId: 4}, callback);
                 break;
         }
     }
 
     componentDidMount(){
-        this.getItems();
+        this.getCanteenId(this.getItems);
     }
     getItems(){
-        var url = 'https://private-9dc2d6-studenteats.apiary-mock.com/canteen/' + this.state.canteenId + '/menu';
-        fetch(url)
-            .then(results => results.json())
-            .then(results => this.setState({'items': results.food}))
+        var url = '/canteen/' + this.state.canteenId + '/menu';
+        steaGet(url)
+            // .then(results => results)
+            .then(results => this.setState({'items': results.data.food}))
             .then(results => this.setState({'isLoading': false}))
     }
     addItemToCart = (index) => {
@@ -50,14 +52,27 @@ export default class MenuMenza extends Component{
         // todo - add items to cart
     };
     render(){
-        return (
-            <div>
-            <Navigation />
-            <Header/>
-                {!this.state.isLoading && <MenuContainer food={this.state.items} cartAdd={this.addItemToCart}/>}
-            <RightContainer/>
-            <Footer/>
-            </div>
-        );
+        if (!this.state.isLoading && this.state.items !== undefined){
+            return (
+                <div>
+                    <Navigation />
+                    <Header/>
+                    <MenuContainer food={this.state.items} cartAdd={this.addItemToCart}/>
+                    <RightContainer/>
+                    <Footer/>
+                </div>
+            );
+        }else{
+            return (
+                <div>
+                    <Navigation />
+                    <Header/>
+                    Loading...
+                    <RightContainer/>
+                    <Footer/>
+                </div>
+            );
+        }
+
     }
 }
