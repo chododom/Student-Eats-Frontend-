@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Container from 'react-bootstrap/Container';
 import Jumbotron from "react-bootstrap/es/Jumbotron";
 import logoAlpha from '../logo_alpha.png'
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 export default class Footer extends Component{
 
@@ -24,22 +25,13 @@ export default class Footer extends Component{
                     <li className="foot-logo"><img src={logoAlpha}
                                                    className="img-reulonsive" alt="Image"/></li>
                     <li className="list-link">
-                        <a href="#obchodni_podminky">Obchodní podmínky</a>
+                        <a href="/obchodni_podminky">Obchodní podmínky</a>
                     </li>
                     <li className="list-link">
-                        <a href="#alergeny">Alergeny</a>
+                        <a href="/alergeny">Alergeny</a>
                     </li>
                     <li className="list-link">
-                        <a href="#objednavka">Menu</a>
-                    </li>
-                    <li className="list-link">
-                        <a href="#roznaska">Roznáška</a>
-                    </li>
-                    <li className="list-link">
-                        <a href="#Profil">Profil</a>
-                    </li>
-                    <li className="list-link">
-                        <a href="#kosik">Košík</a>
+                        <a href="/alergeny">Kontakty</a>
                     </li>
                 </ul>
 
