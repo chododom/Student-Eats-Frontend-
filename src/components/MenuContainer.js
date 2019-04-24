@@ -24,6 +24,14 @@ export default class MenuContainer extends Component{
              * sends parent object information about what food is supposed to be added to cart
              * */
             obj.props.cartAdd(index);
+            var tmp = localStorage.getItem("cart");
+            if ( tmp === 'undefined' || tmp == null){
+                localStorage.setItem("cart", index);
+                return;
+            }
+            tmp = tmp + ", " + index;
+            localStorage.setItem("cart", tmp);
+            console.log(localStorage.getItem("cart", tmp))
         };
         var itemsList = items.map(function(item){
             console.log(item.id);

@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import axios from "axios";
+
+const url = 'https://private-9dc2d6-studenteats.apiary-mock.com/login'; // from api-ari - mock data
+
 
 export default class Login extends Component {
     constructor(props) {
@@ -10,7 +14,6 @@ export default class Login extends Component {
             username: "",
             isLoggedIn: false
         };
-        this.props.callbackFromParent(false);
     }
 
     handleChange = event => {
@@ -25,8 +28,29 @@ export default class Login extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        this.props.callbackFromParent(true, 1);
-    }
+        var username = this.state.username;
+        var password = this.state.password;
+        var status = undefined;
+        var userId = undefined;
+            axios.post(url,
+            {
+                username: username,
+                password: password
+            })
+            .then(function (response) {
+                console.log("Post");
+                console.log(response);
+                status = response.status;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        userId = 1;
+        if ( status == 200 ){
+            this.props.callbackFromParent(userId);
+            window.location.reload();
+        }
+    };
 
     render() {
         return (
@@ -53,7 +77,7 @@ export default class Login extends Component {
                     </Form.Group>
                     <Button
                         variant="secondary"
-                        type="button"
+                        type="submit"
                         onClick={this.handleSubmit}
                         disabled={!this.validateForm()}>
                         Přihlásit se</Button>
