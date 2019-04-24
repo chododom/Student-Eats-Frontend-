@@ -9,7 +9,6 @@ export default class Header extends Component{
             <Row>
                 <Col>
                    <div className="contright-header"><p>Profil</p></div>
-                    <Login/>
                 </Col>
             </Row>
         );
