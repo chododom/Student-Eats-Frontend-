@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
     Route,
-    NavLink,
     BrowserRouter,
     Switch
 } from "react-router-dom";
@@ -13,29 +12,21 @@ import './components/Footer.css'
 import './components/myNavBar.css'
 
 import 'react-bootstrap/';
-import * as serviceWorker from './serviceWorker';
-import Navigation from "./components/Navigation";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Jumbotron from 'react-bootstrap/Jumbotron';
 import HomePage from "./components/HomePage";
 import MenuMenza from "./components/MenuMenza";
 import ErrorURL from './components/ErrorURL.js'
+import Donaska from "./components/Donaska";
 
-// todo - delete this
-const NewRoute = () => {
-    return (
-        <div>
-            <p>My Route</p>
-            </div>
-    )
-}
-// todo - replace the "/new" URL and the component NewRoute with something relevant
 ReactDOM.render(
     <BrowserRouter>
         <Switch>
-            <Route path="/" component={MenuMenza} exact />
-            <Route path="/new" component={NewRoute} />
+            <Route path="/" component={HomePage} exact />
+            <Route path="/technicka_menza" component={MenuMenza} />
+            <Route path="/masarykova_kolej" component={MenuMenza} />
+            <Route path="/tudentsky_dum" component={MenuMenza} />
+            <Route path="/pizzeria_LaFontanella" component={MenuMenza} />
+            <Route path="/donaska" component={Donaska}/>
+            <Route path="/kosik" component={Donaska}/>
             <Route component={ErrorURL} />
         </Switch>
     </BrowserRouter>
