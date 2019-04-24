@@ -23,7 +23,7 @@ ReactDOM.render(
             <Route path="/" component={HomePage} exact />
             <Route path="/technicka_menza" component={MenuMenza} />
             <Route path="/masarykova_kolej" component={MenuMenza} />
-            <Route path="/tudentsky_dum" component={MenuMenza} />
+            <Route path="/studentsky_dum" component={MenuMenza} />
             <Route path="/pizzeria_LaFontanella" component={MenuMenza} />
             <Route path="/donaska" component={Donaska}/>
             <Route path="/kosik" component={Donaska}/>
@@ -32,3 +32,4 @@ ReactDOM.render(
     </BrowserRouter>
 ,
 document.getElementById('root'));
+localStorage.setItem("userId", -1);

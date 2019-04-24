@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import HomePage from "./HomePage";
-import RightContainer from "./RightContainer";
 
 export default class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
             password: "",
+            username: "",
+            isLoggedIn: false
         };
+        this.props.callbackFromParent(false);
     }
 
     handleChange = event => {
@@ -25,6 +25,7 @@ export default class Login extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
+        this.props.callbackFromParent(true, 1);
     }
 
     render() {
@@ -51,7 +52,8 @@ export default class Login extends Component {
                     </Form.Group>
                     <Button
                         variant="secondary"
-                        type="submit"
+                        type="button"
+                        onClick={this.handleSubmit}
                         disabled={!this.validateForm()}>
                         Přihlásit se</Button>
                 </Form>
