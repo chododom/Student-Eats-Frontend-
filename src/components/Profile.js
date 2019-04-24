@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Login from "./Login";
+import Button from 'react-bootstrap/Button';
+import '../index.css'
 
-export default class Header extends Component{
+export default class Profile extends Component{
     constructor(props) {
         console.log("Profile constructor");
         super(props);
@@ -29,23 +30,34 @@ export default class Header extends Component{
         if (this.state.userData == null)
             return <p>No user data</p>;
         return <div>
-            <p><strong>Jmeno:</strong> {this.state.userData.name}</p>
+            <p><strong>Jméno:</strong> {this.state.userData.name}</p>
             <p><strong>Přijmení:</strong> {this.state.userData.surname}</p>
             <p><strong>Username:</strong> {this.state.userData.username}</p>
         </div>
     }
 
+    handleSubmit = event => {
+        event.preventDefault();
+        localStorage.setItem("userId",undefined);
+        window.location.reload();
+    }
+
     render() {
         return (
+            <div id="Profile">
             <Row>
                 {! this.state.dataSet && this.getData()}
-
                 <Col>
-                   <div className="contright-header"><p>Profil</p></div>
-                        { this.state.dataSet && this.generateData()}
-
+                   <div className="contright-header"><p>Profil</p>
+                       <Button
+                           type="button"
+                           onClick={this.handleSubmit}
+                       >Odhlásit se</Button>
+                       {this.state.dataSet && this.generateData()}
+                   </div>
                 </Col>
             </Row>
+            </div>
         );
     }
 }

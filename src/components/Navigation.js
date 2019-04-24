@@ -8,6 +8,7 @@ import {
     HashRouter
 } from "react-router-dom";
 import MenuMenza from "./MenuMenza";
+import Profile from "./Profile";
 
 export default class Navigation extends Component{
     render() {
@@ -23,8 +24,8 @@ export default class Navigation extends Component{
                             <NavDropdown.Item href="/studentsky_dum">Studentský dům</NavDropdown.Item>
                             <NavDropdown.Item href="/pizzeria_LaFontanella">Pizzeria La Fontanella</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link href="/donaska">Donáška</Nav.Link>
-                        <Nav.Link href="/donaska">Košík</Nav.Link>
+                        { localStorage.getItem("userId") != null && localStorage.getItem("userId") !== 'undefined' &&  <Nav.Link href="/donaska">Donáška</Nav.Link>}
+                        { localStorage.getItem("userId") != null && localStorage.getItem("userId") !== 'undefined' &&  <Nav.Link href="/kosik">Košík</Nav.Link>}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
