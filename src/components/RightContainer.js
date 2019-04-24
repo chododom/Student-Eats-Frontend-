@@ -24,7 +24,7 @@ export default class RightContainer extends Component{
             <Container id="ContainerRight">
                 { localStorage.getItem("userId") != null && localStorage.getItem("userId") !== 'undefined' && <Profile userId={localStorage.getItem("userId")} />}
                 { ( localStorage.getItem("userId") == null || localStorage.getItem("userId") === 'undefined' )&& <Login callbackFromParent={this.setLoginState}/>}
-                <Basket/>}
+                <Basket/>
             </Container>
         );
     }

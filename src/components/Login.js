@@ -26,6 +26,7 @@ export default class Login extends Component {
     handleSubmit = event => {
         event.preventDefault();
         this.props.callbackFromParent(true, 1);
+        window.location.reload();
     }
 
     render() {

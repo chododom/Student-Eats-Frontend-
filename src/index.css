@@ -25,6 +25,14 @@ code {
   font-weight: bold;
 }
 
+#Profile{
+  background: #dde9ff;
+}
+
+#Basket{
+  background: #d5b2ff;
+}
+
 #ContainerCenter{
   background: #e1e3e0;
   padding: 0px;
@@ -38,7 +46,7 @@ code {
 }
 
 .menu-header{
-  background: darksalmon;
+  background: #8fb2d7;
   font-weight: bold;
   font-size: 26px;
   padding-bottom: 1%;
