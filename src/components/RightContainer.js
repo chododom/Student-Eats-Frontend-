@@ -12,19 +12,18 @@ export default class RightContainer extends Component{
             userId: -1
         };
     }
-    setLoginState = (isLoggedIn, userId) => {
-        console.log("In my callback");
-        //this.setState({userId: userId});
-        //this.setState({isLoggedIn: isLoggedIn});
+    setLoginState = (userId) => {
         localStorage.setItem("userId", userId);
     };
 
     render() {
         return (
             <Container id="ContainerRight">
-                { localStorage.getItem("userId") != null && localStorage.getItem("userId") !== 'undefined' && <Profile userId={localStorage.getItem("userId")} />}
-                { ( localStorage.getItem("userId") == null || localStorage.getItem("userId") === 'undefined' )&& <Login callbackFromParent={this.setLoginState}/>}
-                <Basket/>
+                { localStorage.getItem("userId") != null && localStorage.getItem("userId") !== 'undefined'
+                    && <Profile userId={localStorage.getItem("userId")} />}
+                { localStorage.getItem("userId") != null && localStorage.getItem("userId") !== 'undefined' && <Basket />}
+                { ( localStorage.getItem("userId") == null || localStorage.getItem("userId") === 'undefined' )
+                    && <Login callbackFromParent={this.setLoginState}/>}
             </Container>
         );
     }

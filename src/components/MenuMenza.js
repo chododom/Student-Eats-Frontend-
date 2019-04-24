@@ -6,7 +6,6 @@ import RightContainer from "./RightContainer";
 import MenuContainer from "./MenuContainer";
 import axios from "axios";
 
-const url = 'https://private-9dc2d6-studenteats.apiary-mock.com/canteen/1/menu'; // from api-ari - mock data
 
 export default class MenuMenza extends Component{
     constructor(props) {
@@ -14,13 +13,32 @@ export default class MenuMenza extends Component{
         console.log(this.props.location.pathname);
         this.state = {
             isLoading: true,
-            items: []
+            items: [],
+            canteenId: 0
         };
     }
+    getCanteenId(){
+        switch (this.props.location.pathname) {
+            case "technicka_menza":
+                this.setState({canteenId: 1});
+                break;
+            case "masarykova_kolej":
+                this.setState({canteenId: 2});
+                break;
+            case "studentsky_dum":
+                this.setState({canteenId: 3});
+                break;
+            case "pizzeria_LaFontanella":
+                this.setState({canteenId: 4});
+                break;
+        }
+    }
+
     componentDidMount(){
         this.getItems();
     }
     getItems(){
+        var url = 'https://private-9dc2d6-studenteats.apiary-mock.com/canteen/' + this.state.canteenId + '/menu';
         fetch(url)
             .then(results => results.json())
             .then(results => this.setState({'items': results.food}))
