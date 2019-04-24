@@ -9,21 +9,24 @@ import gulas from '../gulas.png'
 import spagety from '../spagety.png'
 import axios from "axios";
 
-const url = 'https://private-9dc2d6-studenteats.apiary-mock.com/canteen/1/menu'; // from api-ari - mock data
-
-
 export default class MenuContainer extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            hits: [],
             isLoading: false,
-            error: null,
             foodItems: []
         };
     }
-    makeCol(items){
+
+    makeCol(items, obj){
+        const handler = function(index){
+            /**
+             * sends parent object information about what food is supposed to be added to cart
+             * */
+            obj.props.cartAdd(index);
+        };
         var itemsList = items.map(function(item){
+            console.log(item.id);
             return <Col>
                 <div className="panel panel-primary">
                     <div className="panel-body"><img src={item.picture}
@@ -32,16 +35,21 @@ export default class MenuContainer extends Component{
                     <div className="meal-price">
                         <ul>
                             <li className="list-meal"><p>{item.price} Kč</p></li>
-                            <li className="list-meal"><Button variant="danger" type="submit">+</Button></li>
+                            <li className="list-meal">
+                                <Button variant="danger"
+                                        type="button"
+                                        key={item.id}
+                                        onClick={() => handler(item.id)}
+                                        >+</Button>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </Col>;
         });
-        return  <Row>{ itemsList }</Row>
+        return  <Row className="foodRow">{ itemsList }</Row>
     }
-    foods(){
-        console.log("WAAAAA");
+    foods(obj){
         console.log(this.props.food);
         var renderer = [];
         var tmpItems = [];
@@ -49,20 +57,20 @@ export default class MenuContainer extends Component{
             tmpItems.push(item);
             if ( index % 3 == 2 ) {
                 renderer.push(
-                    this.makeCol(tmpItems));
+                    this.makeCol(tmpItems, obj));
                 tmpItems = [];
             }
         });
-/*        if ( tmpItems != [] )
+        if ( tmpItems . length > 0 )
             renderer.push(
-                this.makeCol(tmpItems));*/ // todo - change this
+                this.makeCol(tmpItems, obj)); // todo - change this
         return renderer;
     }
     render() {
         return (
             <Container id="MenuContainer">
                 <div className="menu-header"><p>Dnes 22.4.2019 se v Technické menze podávají tato jídla</p></div>
-                {this.foods()}
+                {this.foods(this)}
             </Container>
         );
     }

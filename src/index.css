@@ -72,3 +72,8 @@ code {
   color: white;
   opacity: 1;
 }
+
+.foodRow img{
+  max-height: 300px;
+  width: auto;
+}
