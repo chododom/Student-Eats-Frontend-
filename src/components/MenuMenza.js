@@ -14,7 +14,8 @@ export default class MenuMenza extends Component{
         this.state = {
             isLoading: true,
             items: [],
-            canteenId: 0
+            canteenId: 0,
+            canteenName: ""
         };
 
     }
@@ -23,15 +24,19 @@ export default class MenuMenza extends Component{
         switch (this.props.location.pathname) {
             case "/technicka_menza":
                 this.setState({canteenId: 1}, callback);
+                this.setState({canteenName: "Technická menza"}, callback);
                 break;
             case "/masarykova_kolej":
                 this.setState({canteenId: 2}, callback);
+                this.setState({canteenName: "Masarykova kolej"}, callback);
                 break;
             case "/studentsky_dum":
                 this.setState({canteenId: 3}, callback);
+                this.setState({canteenName: "Studentský dům"}, callback);
                 break;
             case "/pizzeria_LaFontanella":
                 this.setState({canteenId: 4}, callback);
+                this.setState({canteenName: "Pizzerie LaFontanella"}, callback);
                 break;
         }
     }
@@ -57,7 +62,7 @@ export default class MenuMenza extends Component{
                 <div>
                     <Navigation />
                     <Header/>
-                    <MenuContainer food={this.state.items} cartAdd={this.addItemToCart}/>
+                    <MenuContainer food={this.state.items} cartAdd={this.addItemToCart} canteenName={this.state.canteenName}/>
                     <RightContainer/>
                     <Footer/>
                 </div>

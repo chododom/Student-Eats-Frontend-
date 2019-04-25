@@ -34,6 +34,7 @@ export default class Login extends Component {
         var password = this.state.password;
         var status = undefined;
         var userId = undefined;
+        var obj = this;
             axios.post(login_url,
             {
                 username: username,
@@ -41,18 +42,19 @@ export default class Login extends Component {
             })
             .then(function (response) {
                 console.log("Post");
-                console.log(response.headers.authorization);
+                console.log(response);
                 localStorage.setItem("token", response.headers.authorization);
+
                 status = response.status;
+                userId = 1;
+                if ( status == 200 ){
+                    obj.props.callbackFromParent(userId);
+                    window.location.reload();
+                }
             })
             .catch(function (error) {
                 console.log(error);
             });
-        userId = 1;
-        if ( status == 200 ){
-            this.props.callbackFromParent(userId);
-            window.location.reload();
-        }
     };
 
     render() {
