@@ -18,8 +18,8 @@ export default class Profile extends Component{
     getData(){
         console.log("Id");
         console.log(this.state.userId);
-        if ( this.state.userId > 0 && ! this.state.dataSet){
-            var url = BASE_URL + "user/" + this.state.userId;
+        if ( this.state.userId > 0 && !this.state.dataSet){
+            var url = BASE_URL + "/user/" + this.state.userId;
             try{
             fetch(url)
                 .then(results => results.json())
@@ -29,6 +29,7 @@ export default class Profile extends Component{
                 console.log(e);
             }
         }
+        console.log(this.state.dataSet);
     }
     generateData(){
         if (this.state.userData == null)
@@ -52,7 +53,7 @@ export default class Profile extends Component{
         return (
             <div id="Profile">
             <Row>
-                {! this.state.dataSet && this.getData()}
+                {!this.state.dataSet && this.getData()}
                 <Col>
                    <div className="contright-header"><p>Profil</p>
                        <Button
