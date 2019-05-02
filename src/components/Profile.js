@@ -3,6 +3,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import '../index.css'
+import {BASE_URL} from "../config/environment";
+import {steaGet} from "../services/ApiResource.js";
+
 
 export default class Profile extends Component{
     constructor(props) {
@@ -18,10 +21,9 @@ export default class Profile extends Component{
         console.log("Id");
         console.log(this.state.userId);
         if ( this.state.userId > 0 && ! this.state.dataSet){
-            var url = "https://private-9dc2d6-studenteats.apiary-mock.com/user/" + this.state.userId;
-            fetch(url)
-                .then(results => results.json())
-                .then(results => this.setState({userData: results}))
+            var url = "/user/" + this.state.userId;
+            steaGet(url)
+                .then(results => this.setState({userData: results.data}))
                 .then(results => this.setState({'dataSet': true}))
         }
         console.log(this.state.userData);

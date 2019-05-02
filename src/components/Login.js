@@ -41,8 +41,9 @@ export default class Login extends Component {
             })
             .then(function (response) {
                 console.log("Post");
-                console.log(response.headers.authorization);
+                console.log(response    );
                 localStorage.setItem("token", response.headers.authorization);
+                localStorage.setItem("userId", 7); // todo - change
                 status = response.status;
             })
             .catch(function (error) {
@@ -56,9 +57,9 @@ export default class Login extends Component {
     };
 
     render() {
-        if(isAuthenticated()){
+        /*if(isAuthenticated()){
             return <div>Vítejte v aplikaci <Button variant="secondary" onClick={ () => localStorage.removeItem("token")}>Odhlásit se</Button></div>
-        }else{
+        }else*/{
             return (
                 <div className="Login">
                     <div className="contright-header"><p>Přihlášení</p></div>
