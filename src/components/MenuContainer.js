@@ -5,7 +5,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import rizek from '../assets/rizek.png'
 import svickova from '../assets/svickova.png'
-import gulas from '../assets/gulas.png'
 import spagety from '../assets/spagety.png'
 import axios from "axios";
 
