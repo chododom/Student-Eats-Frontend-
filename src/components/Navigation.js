@@ -7,7 +7,7 @@ import {
     NavLink,
     HashRouter
 } from "react-router-dom";
-import MenuMenza from "./MenuMenza";
+import MenuMenza from "../views/MenuMenza";
 import Profile from "./Profile";
 
 export default class Navigation extends Component{

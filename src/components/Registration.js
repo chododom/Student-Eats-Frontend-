@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navigation from "./Navigation";
 import Header from "./Header";
-import Footer from "./Footer";
+import Footer from "./Footer/Footer";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 

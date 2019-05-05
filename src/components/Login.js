@@ -11,6 +11,7 @@ const login_url = BASE_URL+"/login"; // from api-ari - mock data
 export default class Login extends Component {
     constructor(props) {
         super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             password: "",
             username: "",
@@ -33,26 +34,19 @@ export default class Login extends Component {
         var username = this.state.username;
         var password = this.state.password;
         var status = undefined;
-        var userId = undefined;
             axios.post(login_url,
             {
                 username: username,
                 password: password
             })
-            .then(function (response) {
-                console.log("Post");
-                console.log(response.headers.authorization);
+            .then((response) => {
                 localStorage.setItem("token", response.headers.authorization);
                 status = response.status;
+                this.props.callbackFromParent(username);
             })
             .catch(function (error) {
                 console.log(error);
             });
-        userId = 1;
-        if ( status == 200 ){
-            this.props.callbackFromParent(userId);
-            window.location.reload();
-        }
     };
 
     render() {

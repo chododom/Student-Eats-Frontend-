@@ -8,14 +8,14 @@ import {
 
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './components/Footer.css'
+import './components/Footer/Footer.css'
 import './components/myNavBar.css'
 
 import 'react-bootstrap/';
-import HomePage from "./components/HomePage";
-import MenuMenza from "./components/MenuMenza";
-import ErrorURL from './components/ErrorURL.js'
-import Donaska from "./components/Donaska";
+import HomePage from "./views/HomePage";
+import MenuMenza from "./views/MenuMenza";
+import ErrorURL from './views/ErrorURL.js'
+import Donaska from "./views/Donaska";
 import Registration from "./components/Registration"
 
 ReactDOM.render(

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Header from "./Header";
-import Footer from "./Footer";
-import Navigation from "./Navigation";
-import RightContainer from "./RightContainer";
-import MenuContainer from "./MenuContainer";
+import Header from "../components/Header";
+import Footer from "../components/Footer/Footer";
+import Navigation from "../components/Navigation";
+import RightContainer from "../components/RightContainer";
+import MenuContainer from "../components/MenuContainer";
 import {steaGet} from "../services/ApiResource.js";
 
 

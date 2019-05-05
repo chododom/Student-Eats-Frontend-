@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Navigation from "./Navigation";
-import Header from "./Header";
-import Footer from "./Footer";
+import Navigation from "../components/Navigation";
+import Header from "../components/Header";
+import Footer from "../components/Footer/Footer";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -16,7 +16,7 @@ import {
     BrowserRouter,
     Switch
 } from "react-router-dom";
-import RightContainer from "./RightContainer";
+import RightContainer from "../components/RightContainer";
 
 export default class HomePage extends Component{
     constructor(props){

@@ -3,11 +3,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import '../index.css'
+import {steaGet} from "../services/ApiResource";
 
 export default class Profile extends Component{
+
     constructor(props) {
         console.log("Profile constructor");
         super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             userId: parseInt(this.props.userId),
             dataSet: false,
@@ -18,8 +21,8 @@ export default class Profile extends Component{
         console.log("Id");
         console.log(this.state.userId);
         if ( this.state.userId > 0 && ! this.state.dataSet){
-            var url = "https://private-9dc2d6-studenteats.apiary-mock.com/user/" + this.state.userId;
-            fetch(url)
+            var url = "/user/" + this.state.userId;
+            steaGet(url)
                 .then(results => results.json())
                 .then(results => this.setState({userData: results}))
                 .then(results => this.setState({'dataSet': true}))
@@ -36,11 +39,12 @@ export default class Profile extends Component{
         </div>
     }
 
-    handleSubmit = event => {
+    handleSubmit  = (event) => {
         event.preventDefault();
-        localStorage.setItem("userId",undefined);
-        window.location.reload();
-    }
+        localStorage.removeItem("userId");
+        localStorage.removeItem("token");
+        this.props.logoutHandler();
+    };
 
     render() {
         return (
