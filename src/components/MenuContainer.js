@@ -45,6 +45,7 @@ export default class MenuContainer extends Component{
                             <li className="list-meal">
                                 <Button variant="danger"
                                         type="button"
+                                        disabled={localStorage.getItem("userId") == null || localStorage.getItem("userId") === 'undefined'}
                                         key={item.id}
                                         onClick={() => handler(item.id)}
                                         >+</Button>
@@ -76,7 +77,7 @@ export default class MenuContainer extends Component{
     render() {
         return (
             <Container id="MenuContainer">
-                <div className="menu-header"><p>Dnes 22.4.2019 se v Technické menze podávají tato jídla</p></div>
+                <div className="menu-header"><p>Dnes 22.4.2019 v menze {this.props.canteenName } se podávají tato jídla</p></div>
                 {this.foods(this)}
             </Container>
         );

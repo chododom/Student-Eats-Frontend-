@@ -13,6 +13,7 @@ export default class RightContainer extends Component{
         };
     }
     setLoginState = (userId) => {
+        console.log("setting login state");
         localStorage.setItem("userId", userId);
         this.setState({
             isLoggedIn: true,

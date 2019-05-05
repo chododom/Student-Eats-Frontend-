@@ -2,7 +2,7 @@ import axios from "axios";
 import {BASE_URL} from "../config/environment";
 
 export function isAuthenticated(){
-    return localStorage.getItem("token") !== null;
+    return localStorage.getItem("token") !== null && localStorage.getItem("token") !== 'undefined';
 }
 
 export function steaGet(url, options = {}){

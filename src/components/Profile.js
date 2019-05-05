@@ -28,7 +28,7 @@ export default class Profile extends Component{
                 .then(results => this.setState({userData: results.data}))
                 .then(results => this.setState({'dataSet': true}))
         }
-        console.log(this.state.userData);
+        console.log(this.state.dataSet);
     }
     generateData(){
         if (this.state.userData == null)
@@ -42,16 +42,16 @@ export default class Profile extends Component{
 
     handleSubmit  = (event) => {
         event.preventDefault();
+        this.setState({dataSet: false});
         localStorage.removeItem("userId");
         localStorage.removeItem("token");
         this.props.logoutHandler();
-    };
 
     render() {
         return (
             <div id="Profile">
             <Row>
-                {! this.state.dataSet && this.getData()}
+                {!this.state.dataSet && this.getData()}
                 <Col>
                    <div className="contright-header"><p>Profil</p>
                        <Button
