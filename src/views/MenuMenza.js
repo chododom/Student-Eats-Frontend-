@@ -39,6 +39,13 @@ export default class MenuMenza extends Component{
     componentDidMount(){
         this.getCanteenId(this.getItems);
     }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.location.pathname !== this.props.location.pathname){
+            this.getCanteenId(this.getItems);
+        }
+    }
+
     getItems(){
         var url = '/canteen/' + this.state.canteenId + '/menu';
         steaGet(url)
