@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
 import {BASE_URL} from "../config/environment";
+import {NavLink} from "react-router-dom";
 
 const login_url = BASE_URL+"/login"; // from api-ari - mock data
 
@@ -80,7 +81,7 @@ export default class Login extends Component {
                             disabled={!this.validateForm()}>
                             Přihlásit se</Button>
                     </Form>
-                    <p>Nemáte přihlašovací údaje?<a href="/registrace">  Zaregistrujte se!</a></p>
+                    <p>Nemáte přihlašovací údaje?<NavLink to="/registrace">  Zaregistrujte se!</NavLink></p>
                 </div>
             );
     }
