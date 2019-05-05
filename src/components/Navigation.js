@@ -14,18 +14,18 @@ export default class Navigation extends Component{
     render() {
         return (
             <Navbar bg="light" expand="lg" sticky="top">
-                <Navbar.Brand href="/">Student Eats</Navbar.Brand>
+                <Navbar.Brand><NavLink to="/">Student Eats</NavLink></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                         <NavDropdown title="Menu" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="/technicka_menza">Technická menza</NavDropdown.Item>
-                            <NavDropdown.Item href="/masarykova_kolej">Masarykova kolej</NavDropdown.Item>
-                            <NavDropdown.Item href="/studentsky_dum">Studentský dům</NavDropdown.Item>
-                            <NavDropdown.Item href="/pizzeria_LaFontanella">Pizzeria La Fontanella</NavDropdown.Item>
+                            <NavDropdown.Item><NavLink to="/technicka_menza">Technická menza</NavLink></NavDropdown.Item>
+                            <NavDropdown.Item ><NavLink to="/masarykova_kolej">Masarykova kolej</NavLink></NavDropdown.Item>
+                            <NavDropdown.Item ><NavLink to="/studentsky_dum">Studentský dům</NavLink></NavDropdown.Item>
+                            <NavDropdown.Item ><NavLink to="/pizzeria_LaFontanella">Pizzeria La Fontanella</NavLink></NavDropdown.Item>
                         </NavDropdown>
-                        { localStorage.getItem("userId") != null && localStorage.getItem("userId") !== 'undefined' &&  <Nav.Link href="/donaska">Donáška</Nav.Link>}
-                        { localStorage.getItem("userId") != null && localStorage.getItem("userId") !== 'undefined' &&  <Nav.Link href="/kosik">Košík</Nav.Link>}
+                        { localStorage.getItem("userId") != null && localStorage.getItem("userId") !== 'undefined' &&  <NavLink to="/donaska">Donáška</NavLink>}
+                        { localStorage.getItem("userId") != null && localStorage.getItem("userId") !== 'undefined' &&  <NavLink to="/kosik">Košík</NavLink>}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

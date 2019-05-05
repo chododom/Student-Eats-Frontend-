@@ -46,6 +46,7 @@ export default class Profile extends Component{
         localStorage.removeItem("userId");
         localStorage.removeItem("token");
         this.props.logoutHandler();
+    }
 
     render() {
         return (

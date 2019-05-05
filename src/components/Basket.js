@@ -6,19 +6,22 @@ export default class Header extends Component{
 
     constructor(props){
         super(props);
+        let foods = localStorage.getItem("cart");
         this.state = {
-            food: []
+            food: (foods)?foods.split(", "):null
         };
     }
 
     getFoodInOrder(){
-        var foods = localStorage.getItem("cart");
-        var foodIndex = [];
-        foodIndex = foods.split(", ");
-        console.log(foodIndex);
+        let foodIndex = [];
+        if(this.state.foods){
+            foodIndex = this.state.foods;
+            console.log(foodIndex);
+        }
     }
 
     render() {
+
         return (
             <div id="Basket">
             <Row>

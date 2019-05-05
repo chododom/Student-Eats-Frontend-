@@ -3,7 +3,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
 import {BASE_URL} from "../config/environment";
-import {isAuthenticated} from "../services/ApiResource";
 
 const login_url = BASE_URL+"/login"; // from api-ari - mock data
 
@@ -51,9 +50,7 @@ export default class Login extends Component {
     };
 
     render() {
-        /*if(isAuthenticated()){
-            return <div>Vítejte v aplikaci <Button variant="secondary" onClick={ () => localStorage.removeItem("token")}>Odhlásit se</Button></div>
-        }else*/{
+
             return (
                 <div className="Login">
                     <div className="contright-header"><p>Přihlášení</p></div>
@@ -86,7 +83,5 @@ export default class Login extends Component {
                     <p>Nemáte přihlašovací údaje?<a href="/registrace">  Zaregistrujte se!</a></p>
                 </div>
             );
-        }
-
     }
 }
