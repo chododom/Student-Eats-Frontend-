@@ -3,7 +3,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import '../index.css'
-import {steaGet} from "../services/ApiResource";
+import {BASE_URL} from "../config/environment";
+import {steaGet} from "../services/ApiResource.js";
+
 
 export default class Profile extends Component{
 
@@ -23,8 +25,7 @@ export default class Profile extends Component{
         if ( this.state.userId > 0 && ! this.state.dataSet){
             var url = "/user/" + this.state.userId;
             steaGet(url)
-                .then(results => results.json())
-                .then(results => this.setState({userData: results}))
+                .then(results => this.setState({userData: results.data}))
                 .then(results => this.setState({'dataSet': true}))
         }
         console.log(this.state.userData);
