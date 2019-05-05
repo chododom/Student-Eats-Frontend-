@@ -1,0 +1,15 @@
+#myNavbar {
+    display: block;
+}
+#myNavbar *{
+    display: inline;
+}
+#myNavbar ul{
+    display: block;
+    width: 100%;
+}
+#myNavbar ul li{
+    display: inline-block;
+    width: 25%;
+    padding: 50px;
+}

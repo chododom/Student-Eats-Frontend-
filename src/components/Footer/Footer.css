@@ -1,0 +1,30 @@
+#FooterWrapper{
+    clear: both;
+    display: block;
+    background-color: #000000;
+    margin-bottom: 0px;
+    margin-top: 80px;
+    padding-bottom: 1px;
+    padding-top: 0px;
+    border: 0px;
+}
+#FooterWrapper *{
+    display: inline;
+    height: 100%;
+}
+
+#FooterWrapper ul{
+    display: block;
+    width: 100%;
+}
+
+.foot-logo img{
+    width: 30%;
+    height: 30%;
+}
+
+#FooterWrapper ul li {
+    display: inline-block;
+    width: 14%;
+    padding: 5px;
+}

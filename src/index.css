@@ -12,41 +12,76 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.panel-body{
+  padding: 5%;
+}
+
 .panel-body img{
-  width: 100%;
+  width: 60%;
+}
+
+.contright-header{
+  font-weight: bold;
+}
+
+#Profile{
+  background: #dde9ff;
+}
+
+#Basket{
+  background: #d5b2ff;
+}
+
+#ContainerCenter{
+  background: #e1e3e0;
+  padding: 0px;
+  float: left;
+  width: 80%;
+}
+
+#MenuContainer{
+  float: left;
+  width: 80%;
+}
+
+.menu-header{
+  background: #8fb2d7;
+  font-weight: bold;
+  font-size: 26px;
+  padding-bottom: 1%;
+  padding-top: 1%;
+  padding-left: 5%;
+}
+
+#MenuContainer ul li{
+  display: inline-block;
+  font-weight: bold;
+  padding-right: 30%;
+}
+
+#ContainerRight{
+  background: #ff8d8d;
+  float: right;
+  width: 20%;
+  padding: 0px;
 }
 
 #HeaderWrapper {
-  background-image: url("./stea.png");
+  background-image: url("assets/stea.png");
   opacity: 1;
+  margin: 0px;
 }
-#FooterWrapper{
-  background-color: black;
-  margin-bottom: 0px;
-  margin-top: 32px;
-}
-
 .active{
   color: black;
-}
-
-#myNavbar {
-  display: block;
-}
-#myNavbar *{
-  display: inline;
-}
-#myNavbar ul{
-  display: block;
-  width: 100%;
-}
-#myNavbar ul li{
-  display: inline-block;
-  width: 25%;
-  padding: 50px;
 }
 
 .jumbotron *{
   color: white;
   opacity: 1;
+}
+
+.foodRow img{
+  max-height: 300px;
+  width: auto;
 }
