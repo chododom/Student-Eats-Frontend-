@@ -63,7 +63,7 @@ export default class Profile extends Component {
                 <Row>
                     {!this.state.dataSet && this.getData()}
                     <Col>
-                        <div className="contright-header"><p>Profil2</p>
+                        <div className="contright-header"><p>Profil</p>
                             <Button
                                 type="button"
                                 onClick={this.handleSubmit}
@@ -72,6 +72,7 @@ export default class Profile extends Component {
                         </div>
                     </Col>
                 </Row>
+                <p>Košík</p>
             </div>
         );
     }

@@ -17,6 +17,7 @@ import MenuMenza from "./views/MenuMenza";
 import ErrorURL from './views/ErrorURL.js'
 import Donaska from "./views/Donaska";
 import Registration from "./components/Registration"
+import Basket from './components/Basket'
 
 ReactDOM.render(
     <BrowserRouter>
@@ -27,7 +28,7 @@ ReactDOM.render(
             <Route path="/studentsky_dum" component={MenuMenza} />
             <Route path="/pizzeria_LaFontanella" component={MenuMenza} />
             <Route path="/donaska" component={Donaska}/>
-            <Route path="/kosik" component={Donaska}/>
+            <Route path="/kosik" component={Basket}/>
             <Route path="/registrace" component={Registration}/>
             <Route component={ErrorURL} />
         </Switch>

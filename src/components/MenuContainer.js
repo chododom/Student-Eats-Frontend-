@@ -45,7 +45,7 @@ export default class MenuContainer extends Component{
                             <li className="list-meal">
                                 <Button variant="danger"
                                         type="button"
-                                        disabled={localStorage.getItem("userId") == null || localStorage.getItem("userId") === 'undefined'}
+                                        //disabled={localStorage.getItem("userId") == null || localStorage.getItem("userId") === 'undefined'}
                                         key={item.id}
                                         onClick={() => handler(item.id)}
                                         >+</Button>
