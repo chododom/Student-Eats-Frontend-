@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+
 import {
-    Route,
     NavLink,
-    HashRouter
 } from "react-router-dom";
 import MenuMenza from "../views/MenuMenza";
 import Profile from "./Profile";

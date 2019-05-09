@@ -18,6 +18,10 @@ export default class MenuMenza extends Component{
 
     }
     getCanteenId(callback){
+        let url = '/canteen';
+        steaGet(url)
+            .then(results => console.log("Canteen", results))
+
         switch (this.props.location.pathname) {
             case "/technicka_menza":
                 this.setState({canteenId: 0}, callback);

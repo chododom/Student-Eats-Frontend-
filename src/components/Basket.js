@@ -33,7 +33,7 @@ export default class Basket extends Component{
         this.setState({
             [event.target.id]: event.target.value
         });
-    }
+    };
 
     getFoodInOrder(){
         let foodIndex = [];

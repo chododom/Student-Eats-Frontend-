@@ -60,13 +60,13 @@ code {
   background: #ff8d8d;
   float: right;
   width: 20%;
-  padding: 0px;
+  padding: 0;
 }
 
 #HeaderWrapper {
   background-image: url("assets/stea.png");
   opacity: 1;
-  margin: 0px;
+  margin: 0;
 }
 .active{
   color: black;
@@ -80,4 +80,9 @@ code {
 .foodRow img{
   max-height: 300px;
   width: auto;
+}
+
+.food-image{
+  max-width: 300px;
+  max-height: 300px;
 }

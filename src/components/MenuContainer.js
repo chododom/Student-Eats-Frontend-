@@ -3,10 +3,6 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import rizek from '../assets/rizek.png'
-import svickova from '../assets/svickova.png'
-import spagety from '../assets/spagety.png'
-import axios from "axios";
 
 export default class MenuContainer extends Component{
     constructor(props) {
@@ -17,11 +13,11 @@ export default class MenuContainer extends Component{
         };
     }
 
+    /**
+     * sends parent object information about what food is supposed to be added to cart
+     * */
     makeCol(items, obj){
         const handler = function(index){
-            /**
-             * sends parent object information about what food is supposed to be added to cart
-             * */
             obj.props.cartAdd(index);
             var tmp = localStorage.getItem("cart");
             if ( tmp === 'undefined' || tmp == null){
@@ -37,7 +33,7 @@ export default class MenuContainer extends Component{
             return <Col key={item.id}>
                 <div className="panel panel-primary">
                     <div className="panel-body"><img src={item.picture}
-                                                     className="img-responsive" alt="Image" /></div>
+                                                     className="img-responsive food-image" alt="Image" /></div>
                     <div className="meal-name"><p>{item.name}</p></div>
                     <div className="meal-price">
                         <ul>
