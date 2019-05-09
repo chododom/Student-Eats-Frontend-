@@ -47,7 +47,6 @@ export default class RightContainer extends Component{
             return (
                 <Container id="ContainerRight">
                     <Profile logoutHandler={this.logout} />
-                    <Basket />
                 </Container>
             );
         }
