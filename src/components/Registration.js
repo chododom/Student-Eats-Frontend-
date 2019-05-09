@@ -4,6 +4,12 @@ import Header from "./Header";
 import Footer from "./Footer/Footer";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import axios from "axios";
+import {BASE_URL} from "../config/environment";
+import Alert from 'react-bootstrap/Alert'
+
+const registration_url = BASE_URL + "/user";
+const login_url = BASE_URL + "/login";
 
 export default class Registration extends Component{
     constructor(props){
@@ -14,7 +20,8 @@ export default class Registration extends Component{
             username: "",
             password: "",
             passwordAgain: "",
-            telNumber: ""
+            telNumber: "",
+            success: false
         };
     }
 
@@ -33,9 +40,44 @@ export default class Registration extends Component{
             && this.state.password == this.state.passwordAgain;
     }
 
+    successMessage(){
+        if ( this.state.success ){
+            return (
+                <Alert variant="success">
+                    <Alert.Heading>Byl jste úspěšně přihlášen</Alert.Heading>
+                </Alert>
+            )
+        }
+    }
+
     handleSubmit = event => {
         event.preventDefault();
-    }
+        console.log(this.state.username);
+        let name = this.state.name;
+        let surname = this.state.surname;
+        let username = this.state.username;
+        let password = this.state.password;
+        let phoneNumber = this.state.telNumber;
+        var status = undefined;
+        axios.post(registration_url,
+            {
+                name: name,
+                surname: surname,
+                phoneNumber: phoneNumber,
+                username: username,
+                password: password
+            })
+            .then((response) => {
+                status = response.status;
+                if ( status === 201 ){
+                    this.setState({success: true})
+                }
+                console.log(response.status)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
 
 
     render() {
@@ -43,6 +85,7 @@ export default class Registration extends Component{
             <div>
                 <Navigation />
                 <Header />
+                {this.successMessage()}
                 <div className="Registration">
                     <div className="contright-header"><p>Registrace</p></div>
                     <Form>
@@ -91,14 +134,15 @@ export default class Registration extends Component{
                                 placeholder="Zadejte své heslo znovu" />
                         </Form.Group>
                         <Button
-                            href='/'
                             variant="secondary"
                             type="submit"
+                            onClick={this.handleSubmit}
                             disabled={!this.validateForm()}>
                             Registrovat</Button>
                     </Form>
-                <Footer />
-            </div>
+                    {this.successMessage()}
+                    <Footer />
+                </div>
             </div>
         );
     }

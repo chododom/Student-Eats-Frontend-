@@ -17,7 +17,6 @@ export default class RightContainer extends Component{
         localStorage.setItem("userId", userId);*/
         this.setState({
             isLoggedIn: true,
-            userId
         })
     };
 
@@ -26,6 +25,14 @@ export default class RightContainer extends Component{
                 isLoggedIn: false,
                 userId: -1
             })
+    };
+
+    componentDidMount() {
+        if ( localStorage.getItem("username") != null && localStorage.getItem("username") !== 'undefined' ){
+            this.setState({
+                isLoggedIn: true,
+            })
+        }
     }
 
 

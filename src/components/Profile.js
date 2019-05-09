@@ -23,8 +23,8 @@ export default class Profile extends Component {
         /**
          *  loads data for a logged-in user
          */
-        console.log("Id");
-        console.log(this.state.userId);
+        console.log("Username", localStorage.getItem("username"));
+        console.log("Token", localStorage.getItem("token"));
         let url = "/user/" + localStorage.getItem("username");
         console.log(url);
         steaGet(url)
@@ -63,7 +63,7 @@ export default class Profile extends Component {
                 <Row>
                     {!this.state.dataSet && this.getData()}
                     <Col>
-                        <div className="contright-header"><p>Profil2</p>
+                        <div className="contright-header"><p>Profil</p>
                             <Button
                                 type="button"
                                 onClick={this.handleSubmit}
