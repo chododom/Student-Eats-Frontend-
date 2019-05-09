@@ -4,6 +4,12 @@ import Header from "./Header";
 import Footer from "./Footer/Footer";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import axios from "axios";
+import {BASE_URL} from "../config/environment";
+import Alert from 'react-bootstrap/Alert'
+
+const registration_url = BASE_URL + "/user";
+const login_url = BASE_URL + "/login";
 
 export default class Registration extends Component{
     constructor(props){
@@ -14,7 +20,9 @@ export default class Registration extends Component{
             username: "",
             password: "",
             passwordAgain: "",
-            telNumber: ""
+            telNumber: "",
+            success: false,
+            error: false
         };
     }
 
@@ -33,9 +41,70 @@ export default class Registration extends Component{
             && this.state.password == this.state.passwordAgain;
     }
 
+    successMessage(){
+        if ( this.state.success ){
+            return (
+                <Alert variant="success">
+                    <Alert.Heading>Byl jste úspěšně přihlášen</Alert.Heading>
+                </Alert>
+            )
+       }
+    }
+
+    successMessage(){
+        if ( this.state.success ){
+            return (
+                <Alert variant="success">
+                    <Alert.Heading>Byl jste úspěšně registrován</Alert.Heading>
+                </Alert>
+            )
+        }
+    }
+
+    errorMessage(){
+        if ( this.state.error ){
+            return (
+                <Alert variant="danger">
+                    <Alert.Heading>Chyba při registraci - změňte prosím svůj username</Alert.Heading>
+                </Alert>
+            )
+        }
+    }
+
     handleSubmit = event => {
         event.preventDefault();
-    }
+        console.log(this.state.username);
+        let name = this.state.name;
+        let surname = this.state.surname;
+        let username = this.state.username;
+        let password = this.state.password;
+        let phoneNumber = this.state.telNumber;
+        var status = undefined;
+        this.setState({success: false});
+        this.setState({error: true});
+        axios.post(registration_url,
+            {
+                name: name,
+                surname: surname,
+                phoneNumber: phoneNumber,
+                username: username,
+                password: password
+            })
+            .then((response) => {
+                console.log("HAHAHA")
+                status = response.status;
+                console.log("Status", status)
+                if ( status === 201 ) {
+                    this.setState({success: true});
+                    this.setState({error: false});
+                    return
+                }
+                console.log("Status2", response.status)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
 
 
     render() {
@@ -43,6 +112,8 @@ export default class Registration extends Component{
             <div>
                 <Navigation />
                 <Header />
+                {this.successMessage()}
+                {this.errorMessage()}
                 <div className="Registration">
                     <div className="contright-header"><p>Registrace</p></div>
                     <Form>
@@ -91,14 +162,16 @@ export default class Registration extends Component{
                                 placeholder="Zadejte své heslo znovu" />
                         </Form.Group>
                         <Button
-                            href='/'
                             variant="secondary"
                             type="submit"
+                            onClick={this.handleSubmit}
                             disabled={!this.validateForm()}>
                             Registrovat</Button>
                     </Form>
-                <Footer />
-            </div>
+                    {this.successMessage()}
+                    {this.errorMessage()}
+                    <Footer />
+                </div>
             </div>
         );
     }

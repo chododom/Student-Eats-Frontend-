@@ -10,7 +10,6 @@ import {steaGet} from "../services/ApiResource.js";
 export default class MenuMenza extends Component{
     constructor(props) {
         super(props);
-        console.log(this.props.location.pathname);
         this.state = {
             isLoading: true,
             items: [],
@@ -19,7 +18,6 @@ export default class MenuMenza extends Component{
 
     }
     getCanteenId(callback){
-
         switch (this.props.location.pathname) {
             case "/technicka_menza":
                 this.setState({canteenId: 0}, callback);
@@ -47,7 +45,7 @@ export default class MenuMenza extends Component{
     }
 
     getItems(){
-        var url = '/canteen/' + this.state.canteenId + '/menu';
+        let url = '/canteen/' + this.state.canteenId + '/menu';
         steaGet(url)
             .then(results => this.setState({'items': results.data.food}))
             .then(results => this.setState({'isLoading': false}))
