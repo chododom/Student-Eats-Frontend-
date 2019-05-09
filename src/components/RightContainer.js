@@ -8,13 +8,13 @@ export default class RightContainer extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            isLoggedIn: localStorage.getItem("userId") != null && localStorage.getItem("userId") !== undefined,
+            isLoggedIn: localStorage.getItem("username") != null && localStorage.getItem("username") !== undefined,
             userId: -1
         };
     }
     setLoginState = (userId) => {
-        console.log("setting login state");
-        localStorage.setItem("userId", userId);
+        /*console.log("setting login state");
+        localStorage.setItem("userId", userId);*/
         this.setState({
             isLoggedIn: true,
             userId
@@ -39,7 +39,7 @@ export default class RightContainer extends Component{
         }else{
             return (
                 <Container id="ContainerRight">
-                    <Profile userId={this.state.userId} logoutHandler={this.logout} />
+                    <Profile logoutHandler={this.logout} />
                     <Basket />
                 </Container>
             );

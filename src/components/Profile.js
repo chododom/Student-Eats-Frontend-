@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import '../index.css'
-import {BASE_URL} from "../config/environment";
 import {steaGet} from "../services/ApiResource.js";
 
 
-export default class Profile extends Component{
+export default class Profile extends Component {
 
     constructor(props) {
         console.log("Profile constructor");
@@ -19,18 +18,25 @@ export default class Profile extends Component{
             userData: null
         };
     }
-    getData(){
+
+    getData() {
+        /**
+         *  loads data for a logged-in user
+         */
         console.log("Id");
         console.log(this.state.userId);
-        if ( this.state.userId > 0 && ! this.state.dataSet){
-            var url = "/user/" + this.state.userId;
-            steaGet(url)
-                .then(results => this.setState({userData: results.data}))
-                .then(results => this.setState({'dataSet': true}))
-        }
+        let url = "/user/" + localStorage.getItem("username");
+        console.log(url);
+        steaGet(url)
+            .then(results => this.setState({userData: results.data}))
+            .then(results => this.setState({dataSet: true}));
         console.log(this.state.dataSet);
     }
-    generateData(){
+
+    generateData() {
+        /**
+         * loads personal data from userData storage initialized by getData method
+         */
         if (this.state.userData == null)
             return <p>No user data</p>;
         return <div>
@@ -40,29 +46,32 @@ export default class Profile extends Component{
         </div>
     }
 
-    handleSubmit  = (event) => {
+    handleSubmit = (event) => {
+        /**
+         * handles log out button
+         */
         event.preventDefault();
         this.setState({dataSet: false});
-        localStorage.removeItem("userId");
+        localStorage.removeItem("username");
         localStorage.removeItem("token");
         this.props.logoutHandler();
-    }
+    };
 
     render() {
         return (
             <div id="Profile">
-            <Row>
-                {!this.state.dataSet && this.getData()}
-                <Col>
-                   <div className="contright-header"><p>Profil</p>
-                       <Button
-                           type="button"
-                           onClick={this.handleSubmit}
-                       >Odhlásit se</Button>
-                       {this.state.dataSet && this.generateData()}
-                   </div>
-                </Col>
-            </Row>
+                <Row>
+                    {!this.state.dataSet && this.getData()}
+                    <Col>
+                        <div className="contright-header"><p>Profil2</p>
+                            <Button
+                                type="button"
+                                onClick={this.handleSubmit}
+                            >Odhlásit se</Button>
+                            {this.state.dataSet && this.generateData()}
+                        </div>
+                    </Col>
+                </Row>
             </div>
         );
     }

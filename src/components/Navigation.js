@@ -24,8 +24,8 @@ export default class Navigation extends Component{
                             <NavDropdown.Item ><NavLink to="/studentsky_dum">Studentský dům</NavLink></NavDropdown.Item>
                             <NavDropdown.Item ><NavLink to="/pizzeria_LaFontanella">Pizzeria La Fontanella</NavLink></NavDropdown.Item>
                         </NavDropdown>
-                        { localStorage.getItem("userId") != null && localStorage.getItem("userId") !== 'undefined' &&  <NavLink to="/donaska">Donáška</NavLink>}
-                        { localStorage.getItem("userId") != null && localStorage.getItem("userId") !== 'undefined' &&  <NavLink to="/kosik">Košík</NavLink>}
+                        { localStorage.getItem("username") != null && localStorage.getItem("username    ") !== 'undefined' &&  <NavLink to="/donaska">Donáška</NavLink>}
+                        { localStorage.getItem("username") != null && localStorage.getItem("username") !== 'undefined' &&  <NavLink to="/kosik">Košík</NavLink>}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

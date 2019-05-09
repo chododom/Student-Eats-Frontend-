@@ -41,7 +41,8 @@ export default class Login extends Component {
             })
             .then((response) => {
                 localStorage.setItem("token", response.headers.authorization);
-                localStorage.setItem("userId", 7); // todo - change
+                localStorage.setItem("username", username);
+                console.log(response)
                 status = response.status;
                 this.props.callbackFromParent(username);
             })
