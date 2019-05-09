@@ -21,7 +21,8 @@ export default class Registration extends Component{
             password: "",
             passwordAgain: "",
             telNumber: "",
-            success: false
+            success: false,
+            error: false
         };
     }
 
@@ -47,6 +48,26 @@ export default class Registration extends Component{
                     <Alert.Heading>Byl jste úspěšně přihlášen</Alert.Heading>
                 </Alert>
             )
+       }
+    }
+
+    successMessage(){
+        if ( this.state.success ){
+            return (
+                <Alert variant="success">
+                    <Alert.Heading>Byl jste úspěšně registrován</Alert.Heading>
+                </Alert>
+            )
+        }
+    }
+
+    errorMessage(){
+        if ( this.state.error ){
+            return (
+                <Alert variant="danger">
+                    <Alert.Heading>Chyba při registraci - změňte prosím svůj username</Alert.Heading>
+                </Alert>
+            )
         }
     }
 
@@ -59,6 +80,8 @@ export default class Registration extends Component{
         let password = this.state.password;
         let phoneNumber = this.state.telNumber;
         var status = undefined;
+        this.setState({success: false});
+        this.setState({error: true});
         axios.post(registration_url,
             {
                 name: name,
@@ -68,11 +91,15 @@ export default class Registration extends Component{
                 password: password
             })
             .then((response) => {
+                console.log("HAHAHA")
                 status = response.status;
-                if ( status === 201 ){
-                    this.setState({success: true})
+                console.log("Status", status)
+                if ( status === 201 ) {
+                    this.setState({success: true});
+                    this.setState({error: false});
+                    return
                 }
-                console.log(response.status)
+                console.log("Status2", response.status)
             })
             .catch(function (error) {
                 console.log(error);
@@ -86,6 +113,7 @@ export default class Registration extends Component{
                 <Navigation />
                 <Header />
                 {this.successMessage()}
+                {this.errorMessage()}
                 <div className="Registration">
                     <div className="contright-header"><p>Registrace</p></div>
                     <Form>
@@ -141,6 +169,7 @@ export default class Registration extends Component{
                             Registrovat</Button>
                     </Form>
                     {this.successMessage()}
+                    {this.errorMessage()}
                     <Footer />
                 </div>
             </div>
