@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Profile from "./Profile";
 import Basket from "./Basket";
 import Login from "./Login";
+import Cart from "./Cart/Cart";
 
 export default class RightContainer extends Component{
     constructor(props) {
@@ -47,6 +48,7 @@ export default class RightContainer extends Component{
             return (
                 <Container id="ContainerRight">
                     <Profile logoutHandler={this.logout} />
+                    <Cart/>
                 </Container>
             );
         }

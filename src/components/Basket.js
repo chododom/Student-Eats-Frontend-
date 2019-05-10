@@ -7,18 +7,22 @@ import RightContainer from "./RightContainer";
 import Footer from './Footer/Footer'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
+import { connect } from 'react-redux'
+import {ADD_FOOD} from "../actions/basket_actions";
+import {steaPost} from "../services/ApiResource";
 
 /**
  * class for big basket /kosik
  */
-export default class Basket extends Component{
+class Basket extends Component{
 
     constructor(props){
         super(props);
-        let foods = localStorage.getItem("cart");
+        let foodIds = props.basket.map((item) => { return item.food.id});
+        // this.getFoodInOrder = this.getFoodInOrder.bind(this);
         this.state = {
-            food: (foods)?foods.split(", "):null,
+            foods: props.basket,
+            foodIds: foodIds,
             name: "",
             surname: "",
             telnumber: "",
@@ -36,11 +40,29 @@ export default class Basket extends Component{
     }
 
     getFoodInOrder(){
-        let foodIndex = [];
-        if(this.state.foods){
-            foodIndex = this.state.foods;
-            console.log(foodIndex);
-        }
+        return this.state.foods.map((item) => {
+            let food = item.food;
+            console.log(food);
+            return (
+                <Col>
+                    <Row>
+                        <div>{food.name}</div>
+                        <div><img src={food.picture} alt={food.name} width={200}/></div>
+                        <div>{food.price} Kč</div>
+                    </Row>
+                </Col>
+            )
+        })
+    }
+
+    submit(event){
+        event.preventDefault();
+        let order = {
+            //TODO
+        };
+        steaPost("/order", order).then(() => {
+            //TODO
+        });
     }
 
     render() {
@@ -108,7 +130,7 @@ export default class Basket extends Component{
                                     placeholder="Zadejte poznámku k objednávce" />
                             </Form.Group>
                             <Button
-                                //href='/'
+                                onClick={this.submit}
                                 variant="danger"
                                 type="submit">
                                 Objednat</Button>
@@ -120,3 +142,10 @@ export default class Basket extends Component{
         );
     }
 }
+
+function mapStateToProps(state){
+return ({basket: state.basket})
+}
+
+Basket = connect(mapStateToProps)(Basket);
+export default Basket;
