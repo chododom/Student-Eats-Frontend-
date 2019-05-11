@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Navigation from './Navigation';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import RightContainer from "./RightContainer";
 import Footer from './Footer/Footer'
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Table from 'react-bootstrap/Table'
 
 import {steaGet} from "../services/ApiResource";
 import {isAuthenticated} from "../services/ApiResource";
+import axios from "axios";
+import {BASE_URL} from "../config/environment";
 
 /**
  * class for big basket /kosik
@@ -24,38 +22,57 @@ export default class Delivery extends Component{
         };
     }
 
+    /**
+     * loads all the deliveries to this.state
+     */
     loadOrders(){
         let url = "/order";
         steaGet(url)
             .then(results => {
                 this.setState({deliveries: results.data});
                 this.setState({hasLoaded: true});
-                console.log(this.state.deliveries)
             });
     }
-    //
-    // loadFood(foodList){
-    //     console.log(foodList);
-    //     // let out = foodList.map(function (item, index) {
-    //     //      " "
-    //     // });
-    //     // return out
-    // }
 
+    /**
+     * generates content for the main div on the website
+     * @returns {any[]} content
+     */
     generateContent(){
         const acceptDelivery = function(index){
-            console.log(index)
-
+            console.log(index);
+            var options = {};
+            options.headers = {};
+            options.id = index;
+            options.headers.authorization = localStorage.getItem("token");
+            let url = BASE_URL + "/order/" + index + "/accept";
+            axios.post(url, options)
+                .then((response) => {
+                    console.log(response)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         };
         const loadFood = function(foodList){
             let out = foodList.map(function (item, index) {
-                return " "
+                return (
+                    <span>
+                        {index + 1}. {item.name}
+                        <br />
+                    </span>
+                )
             });
             return out
         };
+
+        /**
+         * generates table filled with deliveries
+         * @type {any[]}
+         */
         let itemsList = this.state.deliveries.map(function(item, index){
             console.log(item);
-            if ( item.orderState === "ACCEPTED" ) { // todo - change to PLACED
+            if ( item.orderState === "PLACED" ) {
                 return <tr>
                     <td>{index + 1}</td>
                     <td>{item.menu.canteen.name}</td>
@@ -74,6 +91,10 @@ export default class Delivery extends Component{
         return itemsList
     }
 
+    /**
+     * initializes table and its header than calls generateContent method
+     * @returns {*}
+     */
     showDeliveries(){
         if(this.state.hasLoaded && isAuthenticated()){
             return (
