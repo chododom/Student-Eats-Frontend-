@@ -42,7 +42,7 @@ export default class Delivery extends Component{
             let url = "/order/" + index + "/accept";
             let data = {id: index};
             steaPost(url, data)
-                .then(results => {
+                .then(() => {
                     component.setState({hasLoaded: true});
                     component.loadOrders();
                 });

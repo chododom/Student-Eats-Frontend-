@@ -41,7 +41,7 @@ export default class MyDeliveries extends Component{
             let url = "/order/" + index + "/confirm";
             let data = {id: index};
             steaPost(url, data)
-                .then(results => {
+                .then(() => {
                     component.setState({hasLoaded: true});
                     component.loadDeliveries();
             });
@@ -68,7 +68,6 @@ export default class MyDeliveries extends Component{
          * @type {any[]}
          */
         return this.state.deliveries.map(function(item, index){
-            console.log(item);
                 return <tr>
                     <td>{index + 1}</td>
                     <td>{item.menu.canteen.name}</td>
