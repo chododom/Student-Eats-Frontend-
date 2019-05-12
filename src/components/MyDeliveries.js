@@ -36,10 +36,15 @@ export default class MyDeliveries extends Component{
      * @returns {any[]} content
      */
     generateContent(){
-        const acceptDelivery = function(index){
-            let url = "/order/" + index + "/accept";
+        let component = this;
+        const finishDelivery = function(index){
+            let url = "/order/" + index + "/confirm";
             let data = {id: index};
             steaPost(url, data)
+                .then(results => {
+                    component.setState({hasLoaded: true});
+                    component.loadDeliveries();
+            });
         };
         const loadFood = function(foodList){
             return foodList.map(function (item, index) {
@@ -51,12 +56,19 @@ export default class MyDeliveries extends Component{
                 )
             });
         };
+        const deliveryFinished = function (courierConfirmed) {
+            if ( courierConfirmed )
+                return "Dokončena";
+            else
+                return "Nedokončena";
+        };
 
         /**
          * generates table filled with deliveries
          * @type {any[]}
          */
         return this.state.deliveries.map(function(item, index){
+            console.log(item);
                 return <tr>
                     <td>{index + 1}</td>
                     <td>{item.menu.canteen.name}</td>
@@ -64,10 +76,11 @@ export default class MyDeliveries extends Component{
                     <td>{item.menu.canteen.address}</td>
                     <td>{item.note}</td>
                     <td>{item.deliveryTime}</td>
+                    <td>{deliveryFinished(item.courierConfirmed)}</td>
                     <td><Button variant="danger"
                                 type="button"
                                 key={item.id}
-                                onClick={() => acceptDelivery(item.id)}
+                                onClick={() => finishDelivery(item.id)}
                     >Dokončit</Button></td>
                 </tr>
         });
@@ -79,7 +92,7 @@ export default class MyDeliveries extends Component{
      * @returns {*}
      */
     showDeliveries(){
-        if(this.state.hasLoaded && isAuthenticated()){
+        if(isAuthenticated()){
             return (
                 <Table responsive="lg">
                     <thead>
@@ -90,6 +103,7 @@ export default class MyDeliveries extends Component{
                         <th>Adresa</th>
                         <th>Poznámka</th>
                         <th>Čas doručení</th>
+                        <th>Objednávka dokončena</th>
                         <th>Dokončit objednávku</th>
                     </tr>
                     </thead>
@@ -100,7 +114,7 @@ export default class MyDeliveries extends Component{
             )
         } else {
             return (
-                <h1>Please log in to view the deliveries</h1>
+                <h2>Please log in to view the deliveries</h2>
             )
         }
     }
@@ -111,6 +125,7 @@ export default class MyDeliveries extends Component{
                 { ! this.state.hasLoaded && isAuthenticated() && this.loadDeliveries()}
                 <Navigation/>
                 <Header/>
+                <h1>Moje donášky</h1>
                 { this.showDeliveries() }
                 <Footer/>
             </div>

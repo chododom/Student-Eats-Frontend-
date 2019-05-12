@@ -37,10 +37,15 @@ export default class Delivery extends Component{
      * @returns {any[]} content
      */
     generateContent(){
+        let component = this;
         const acceptDelivery = function(index){
             let url = "/order/" + index + "/accept";
             let data = {id: index};
             steaPost(url, data)
+                .then(results => {
+                    component.setState({hasLoaded: true});
+                    component.loadOrders();
+                });
         };
         const loadFood = function(foodList){
             return foodList.map(function (item, index) {
