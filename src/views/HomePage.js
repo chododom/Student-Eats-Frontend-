@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navigation from "../components/Navigation";
+import Navigation from "../components/Navigation/Navigation";
 import Header from "../components/Header";
 import Footer from "../components/Footer/Footer";
 import Container from 'react-bootstrap/Container';
@@ -11,10 +11,7 @@ import masarycka from '../assets/masarycka.png'
 import fontanella from '../assets/fontanella.png'
 
 import {
-    Route,
     NavLink,
-    BrowserRouter,
-    Switch
 } from "react-router-dom";
 import RightContainer from "../components/RightContainer";
 

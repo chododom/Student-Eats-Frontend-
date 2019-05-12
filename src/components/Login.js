@@ -33,7 +33,7 @@ export default class Login extends Component {
         event.preventDefault();
         let username = this.state.username;
         let password = this.state.password;
-        var status = undefined;
+        let status = undefined;
         axios.post(login_url,
             {
                 username: username,

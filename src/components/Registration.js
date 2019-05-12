@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navigation from "./Navigation";
+import Navigation from "./Navigation/Navigation";
 import Header from "./Header";
 import Footer from "./Footer/Footer";
 import Form from 'react-bootstrap/Form';
@@ -7,9 +7,7 @@ import Button from 'react-bootstrap/Button';
 import axios from "axios";
 import {BASE_URL} from "../config/environment";
 import Alert from 'react-bootstrap/Alert'
-
 const registration_url = BASE_URL + "/user";
-const login_url = BASE_URL + "/login";
 
 export default class Registration extends Component{
     constructor(props){
@@ -59,7 +57,6 @@ export default class Registration extends Component{
        }
     }
 
-
     /**
      * outputs error message during the proper time
      * @returns {*}
@@ -105,7 +102,6 @@ export default class Registration extends Component{
                 }
             })
     };
-
 
     render() {
         return (

@@ -7,7 +7,6 @@ import {steaGet} from "../services/ApiResource.js";
 
 
 export default class Profile extends Component {
-
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,7 +24,7 @@ export default class Profile extends Component {
         let url = "/user/" + localStorage.getItem("username");
         steaGet(url)
             .then(results => this.setState({userData: results.data}))
-            .then(results => this.setState({dataSet: true}));
+            .then(() => this.setState({dataSet: true}));
     }
 
     /**

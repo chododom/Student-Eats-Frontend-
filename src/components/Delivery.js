@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import Navigation from './Navigation';
+import Navigation from './Navigation/Navigation';
 import Footer from './Footer/Footer'
 import Button from "react-bootstrap/Button";
 import Table from 'react-bootstrap/Table'
 import {steaGet} from "../services/ApiResource";
 import {steaPost} from "../services/ApiResource";
 import {isAuthenticated} from "../services/ApiResource";
+import Alert from 'react-bootstrap/Alert'
+
 
 /**
  * class for big basket /kosik
@@ -15,6 +17,8 @@ export default class Delivery extends Component{
     constructor(props) {
         super(props);
         this.state = {
+            error: false,
+            succes: false,
             deliveries: [],
             hasLoaded: false
         };
@@ -48,8 +52,14 @@ export default class Delivery extends Component{
             steaPost(url, data)
                 .then(() => {
                     component.setState({hasLoaded: true});
+                    component.setState({success: true});
+                    component.setState({error: false});
                     component.loadOrders();
-                });
+                })
+                .catch(() =>{
+                    component.setState({success: false});
+                    component.setState({error: true});
+                })
         };
         /**
          * loads a food from json to string and outputs it to the table
@@ -86,8 +96,37 @@ export default class Delivery extends Component{
                                 onClick={() => acceptDelivery(item.id)}
                     >+</Button></td>
                 </tr>
-            }
+            } else
+                return ""
         });
+    }
+
+    /**
+     * outputs error message during the proper time
+     * @returns {*}
+     */
+    errorMessage(){
+        if ( this.state.error ){
+            return (
+                <Alert variant="danger">
+                    <Alert.Heading>Nelze přijmout objednávku, kterou jste sám zadal</Alert.Heading>
+                </Alert>
+            )
+        }
+    }
+
+    /**
+     * outputs success message during the proper time
+     * @returns {*}
+     */
+    successMessage(){
+        if ( this.state.success ){
+            return (
+                <Alert variant="primary">
+                    <Alert.Heading>Objednávka byla přijata</Alert.Heading>
+                </Alert>
+            )
+        }
     }
 
     /**
@@ -124,12 +163,16 @@ export default class Delivery extends Component{
     render() {
         return (
         <div id="Delivery">
-                { ! this.state.hasLoaded && isAuthenticated() && this.loadOrders()}
-                <Navigation/>
-                <Header/>
-                { this.showDeliveries() }
+            { ! this.state.hasLoaded && isAuthenticated() && this.loadOrders()}
+            <Navigation/>
+            <Header/>
+            {this.errorMessage()}
+            {this.successMessage()}
+            {this.showDeliveries()}
+            {this.errorMessage()}
+            {this.successMessage()}
             <Footer/>
-            </div>
+        </div>
         );
     }
 }

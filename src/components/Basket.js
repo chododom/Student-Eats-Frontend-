@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import Navigation from './Navigation';
+import Navigation from './Navigation/Navigation';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import RightContainer from "./RightContainer";
@@ -8,13 +8,8 @@ import Footer from './Footer/Footer'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { connect } from 'react-redux'
-import {ADD_FOOD} from "../actions/basket_actions";
 import {steaGet, steaPost} from "../services/ApiResource";
-import * as Datetime from 'react-datetime';
-import DateTimePicker from 'react-datetime-picker'
 import DateTime from 'react-datetime';
-import {loadState} from "../localStorage";
-import Food from "./Food";
 import Alert from "react-bootstrap/Alert";
 
 /**
@@ -114,11 +109,11 @@ class Basket extends Component{
             note: this.state.note,
             foods: this.state.foodIds,
             room: this.state.room,
-            menu: "52",
-            deliveryTime: this.state.time.format
+            menu: "52", //todo - change this to non constant value
+            deliveryTime: this.state.time.format()
         };
         steaPost("/order", order).then(
-            (results) => {
+            () => {
                 this.setState({success: true});
         },
         (error) => {
@@ -158,7 +153,7 @@ class Basket extends Component{
             });
         steaGet("/room")
             .then(results => {
-                this.setState({rooms: results.data})
+                this.setState({rooms: results.data});
                 console.log(results)
             });
     }

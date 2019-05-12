@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import Navigation from './Navigation';
+import Navigation from './Navigation/Navigation';
 import Footer from './Footer/Footer'
 import Button from "react-bootstrap/Button";
 import Table from 'react-bootstrap/Table'
@@ -20,6 +20,7 @@ export default class MyDeliveries extends Component{
             hasLoaded: false
         };
     }
+
     /**
      * loads all the deliveries to this.state
      */
@@ -30,10 +31,10 @@ export default class MyDeliveries extends Component{
                 this.setState({deliveries: results.data});
                 this.setState({hasLoaded: true});
             });
-        url = "/user/" + localStorage.getItem("username") +"/transactions";
+        url = "/user/" + localStorage.getItem("username") +"/accepted"; //todo - change this to the new endpoint - should work after
         steaGet(url)
             .then(results => {
-                console.log(results)
+                console.log(results);
                 this.setState({orders: results.data});
                 this.setState({hasLoaded: true});
             });
@@ -175,8 +176,6 @@ export default class MyDeliveries extends Component{
         });
     }
 
-
-
     /**
      * initializes table and its header than calls generateDeliveries method
      * @returns {*}
@@ -225,7 +224,7 @@ export default class MyDeliveries extends Component{
                         <th>Adresa</th>
                         <th>Poznámka</th>
                         <th>Čas doručení</th>
-                        <th>Objednávka dokončena</th>
+                        <th>Potvrzena kurýrem</th>
                         <th>Dokončit objednávku</th>
                     </tr>
                     </thead>
@@ -243,9 +242,10 @@ export default class MyDeliveries extends Component{
                 { ! this.state.hasLoaded && isAuthenticated() && this.loadDeliveries()}
                 <Navigation/>
                 <Header/>
+                <h1>Moje objednávky</h1>
+                { this.showOrders() }
                 <h1>Moje donášky</h1>
                 { this.showDeliveries() }
-                { this.showOrders() }
                 <Footer/>
             </div>
         );

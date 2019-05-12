@@ -10,7 +10,7 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './components/Footer/Footer.css'
 import './components/Cart/Cart.css'
-import './components/myNavBar.css'
+import './components/Navigation/myNavBar.css'
 
 import 'react-bootstrap/';
 import HomePage from "./views/HomePage";
