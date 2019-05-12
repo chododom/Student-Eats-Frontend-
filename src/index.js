@@ -23,7 +23,8 @@ import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import steaApp from "./reducers/reducers";
 import {loadState, saveState} from "./localStorage";
-
+import Delivery from './components/Delivery'
+import MyDeliveries from './components/MyDeliveries'
 const persistedState = loadState();
 const store = createStore(steaApp, persistedState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
@@ -44,6 +45,7 @@ ReactDOM.render(
                 <Route path="/pizzeria_LaFontanella" component={MenuMenza}/>
                 <Route path="/donaska" component={Delivery}/>
                 <Route path="/kosik" component={Basket}/>
+                <Route path="/moje_donasky" component={MyDeliveries}/>
                 <Route path="/registrace" component={Registration}/>
                 <Route component={ErrorURL}/>
             </Switch>

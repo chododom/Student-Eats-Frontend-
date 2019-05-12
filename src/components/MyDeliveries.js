@@ -11,7 +11,7 @@ import {isAuthenticated} from "../services/ApiResource";
 /**
  * class for big basket /kosik
  */
-export default class Delivery extends Component{
+export default class MyDeliveries extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -19,12 +19,11 @@ export default class Delivery extends Component{
             hasLoaded: false
         };
     }
-
     /**
      * loads all the deliveries to this.state
      */
-    loadOrders(){
-        let url = "/order";
+    loadDeliveries(){
+        let url = "/user/" + localStorage.getItem("username") +"/accepted";
         steaGet(url)
             .then(results => {
                 this.setState({deliveries: results.data});
@@ -38,14 +37,14 @@ export default class Delivery extends Component{
      */
     generateContent(){
         let component = this;
-        const acceptDelivery = function(index){
-            let url = "/order/" + index + "/accept";
+        const finishDelivery = function(index){
+            let url = "/order/" + index + "/confirm";
             let data = {id: index};
             steaPost(url, data)
                 .then(() => {
                     component.setState({hasLoaded: true});
-                    component.loadOrders();
-                });
+                    component.loadDeliveries();
+            });
         };
         const loadFood = function(foodList){
             return foodList.map(function (item, index) {
@@ -57,13 +56,18 @@ export default class Delivery extends Component{
                 )
             });
         };
+        const deliveryFinished = function (courierConfirmed) {
+            if ( courierConfirmed )
+                return "Dokončena";
+            else
+                return "Nedokončena";
+        };
 
         /**
          * generates table filled with deliveries
          * @type {any[]}
          */
         return this.state.deliveries.map(function(item, index){
-            if ( item.orderState === "PLACED" ) {
                 return <tr>
                     <td>{index + 1}</td>
                     <td>{item.menu.canteen.name}</td>
@@ -71,22 +75,23 @@ export default class Delivery extends Component{
                     <td>{item.menu.canteen.address}</td>
                     <td>{item.note}</td>
                     <td>{item.deliveryTime}</td>
+                    <td>{deliveryFinished(item.courierConfirmed)}</td>
                     <td><Button variant="danger"
                                 type="button"
                                 key={item.id}
-                                onClick={() => acceptDelivery(item.id)}
-                    >+</Button></td>
+                                onClick={() => finishDelivery(item.id)}
+                    >Dokončit</Button></td>
                 </tr>
-            }
         });
     }
+
 
     /**
      * initializes table and its header than calls generateContent method
      * @returns {*}
      */
     showDeliveries(){
-        if(this.state.hasLoaded && isAuthenticated()){
+        if(isAuthenticated()){
             return (
                 <Table responsive="lg">
                     <thead>
@@ -97,7 +102,8 @@ export default class Delivery extends Component{
                         <th>Adresa</th>
                         <th>Poznámka</th>
                         <th>Čas doručení</th>
-                        <th>Přijmout objednávku</th>
+                        <th>Objednávka dokončena</th>
+                        <th>Dokončit objednávku</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -107,19 +113,20 @@ export default class Delivery extends Component{
             )
         } else {
             return (
-                <h1>Please log in to view the deliveries</h1>
+                <h2>Please log in to view the deliveries</h2>
             )
         }
     }
 
     render() {
         return (
-        <div id="Delivery">
-                { ! this.state.hasLoaded && isAuthenticated() && this.loadOrders()}
+            <div id="Delivery">
+                { ! this.state.hasLoaded && isAuthenticated() && this.loadDeliveries()}
                 <Navigation/>
                 <Header/>
+                <h1>Moje donášky</h1>
                 { this.showDeliveries() }
-            <Footer/>
+                <Footer/>
             </div>
         );
     }
