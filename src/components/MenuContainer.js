@@ -19,16 +19,8 @@ export default class MenuContainer extends Component{
     makeCol(items, obj){
         const handler = function(index){
             obj.props.cartAdd(index);
-            var tmp = localStorage.getItem("cart");
-            if ( tmp === 'undefined' || tmp == null){
-                localStorage.setItem("cart", index);
-                return;
-            }
-            tmp = tmp + ", " + index;
-            localStorage.setItem("cart", tmp);
-            console.log(localStorage.getItem("cart", tmp))
         };
-        var itemsList = items.map(function(item){
+        let itemsList = items.map(function(item){
             console.log(item.id);
             return <Col key={item.id}>
                 <div className="panel panel-primary">
@@ -59,7 +51,7 @@ export default class MenuContainer extends Component{
         var tmpItems = [];
         this.props.food.map((item, index) => {
             tmpItems.push(item);
-            if ( index % 3 == 2 ) {
+            if ( index % 3 === 2 ) {
                 renderer.push(
                     this.makeCol(tmpItems, obj));
                 tmpItems = [];
@@ -67,7 +59,7 @@ export default class MenuContainer extends Component{
         });
         if ( tmpItems . length > 0 )
             renderer.push(
-                this.makeCol(tmpItems, obj)); // todo - change this
+                this.makeCol(tmpItems, obj));
         return renderer;
     }
     render() {

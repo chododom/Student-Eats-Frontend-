@@ -9,7 +9,13 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { connect } from 'react-redux'
 import {ADD_FOOD} from "../actions/basket_actions";
-import {steaPost} from "../services/ApiResource";
+import {steaGet, steaPost} from "../services/ApiResource";
+import * as Datetime from 'react-datetime';
+import DateTimePicker from 'react-datetime-picker'
+import DateTime from 'react-datetime';
+import {loadState} from "../localStorage";
+import Food from "./Food";
+import Alert from "react-bootstrap/Alert";
 
 /**
  * class for big basket /kosik
@@ -21,6 +27,10 @@ class Basket extends Component{
         let foodIds = props.basket.map((item) => { return item.food.id});
         // this.getFoodInOrder = this.getFoodInOrder.bind(this);
         this.state = {
+            success: false,
+            error: false,
+            buildings: [],
+            rooms: [],
             foods: props.basket,
             foodIds: foodIds,
             name: "",
@@ -29,16 +39,25 @@ class Basket extends Component{
             adress: "",
             building: "",
             room:"",
-            note: ""
+            note: "",
+            time: Date()
         };
     }
 
+    /**
+     * handles change for attributes in the form
+     * @param event
+     */
     handleChange = event => {
         this.setState({
             [event.target.id]: event.target.value
         });
     };
 
+    /**
+     * outputs the cart with title, price and picture of the given food
+     * @returns {*}
+     */
     getFoodInOrder(){
         return this.state.foods.map((item) => {
             let food = item.food;
@@ -55,17 +74,104 @@ class Basket extends Component{
         })
     }
 
-    submit(event){
+    /**
+     * outputs success message during the proper time
+     * @returns {*}
+     */
+    successMessage(){
+        if ( this.state.success ){
+            return (
+                <Alert variant="success">
+                    <Alert.Heading>Objednávka úspěšně zadána</Alert.Heading>
+                </Alert>
+            )
+        }
+    }
+
+    /**
+     * outputs error message during the proper time
+     * @returns {*}
+     */
+    errorMessage(){
+        if ( this.state.error ){
+            return (
+                <Alert variant="danger">
+                    <Alert.Heading>Chyba při objednávce, prosím vyplněte všechna povinná pole označená *</Alert.Heading>
+                </Alert>
+            )
+        }
+    }
+
+    /**
+     * submits form and creates order
+     * @param event
+     */
+    submit = event => {
+        this.setState({error: false});
+        this.setState({success: false});
         event.preventDefault();
         let order = {
-            //TODO
+            note: this.state.note,
+            foods: this.state.foodIds,
+            room: this.state.room,
+            menu: "52",
+            deliveryTime: this.state.time.format
         };
-        steaPost("/order", order).then(() => {
-            //TODO
-        });
+        steaPost("/order", order).then(
+            (results) => {
+                this.setState({success: true});
+        },
+        (error) => {
+                console.log(error);
+                this.setState({error: true});
+        }
+        );
+    };
+
+    /**
+     * generates options for select parameter from this.state.buildings
+     * @returns {*[]}
+     */
+    generateBuildingOptions(){
+        return this.state.buildings.map((item) => {
+            return (<option value={item.id}>{item.designation}</option>)
+        })
+    }
+
+    /**
+     * generates options for select parameter from this.state.rooms
+     * @returns {*[]}
+     */
+    generateRoomOptions(){
+        return this.state.rooms.map((item) => {
+            return (<option value={item.id}>{item.designation}</option>)
+        })
+    }
+
+    /**
+     * loads data to this.state.buildings and this.state.rooms
+     */
+    componentDidMount() {
+        steaGet("/building")
+            .then(results => {
+                this.setState({buildings: results.data})
+            });
+        steaGet("/room")
+            .then(results => {
+                this.setState({rooms: results.data})
+                console.log(results)
+            });
     }
 
     render() {
+        const obj = this;
+        /**
+         * handles and sets date to the state machine
+         * @param date - date input from user
+         */
+        const handleDate2 = function(date){
+            obj.setState({time: date})
+        };
 
         return (
             <div id="Basket">
@@ -109,25 +215,37 @@ class Basket extends Component{
                                     placeholder="Zadejte ulici a číslo popisné" />
                             </Form.Group>
                             <Form.Group controlId="building">
-                                <Form.Label>Budova:</Form.Label>
+                                <Form.Label>*Budova:</Form.Label>
                                 <Form.Control
+                                    as="select"
                                     value={this.state.building}
                                     onChange={this.handleChange}
-                                    placeholder="Zadejte budovu" />
+                                    placeholder="Zadejte budovu">
+                                    <option value={0}>Vyber budovu</option>
+                                    {this.generateBuildingOptions()}
+                                </Form.Control>
                             </Form.Group>
                             <Form.Group controlId="room">
-                                <Form.Label>Místnost:</Form.Label>
+                                <Form.Label>*Místnost:</Form.Label>
                                 <Form.Control
+                                    as="select"
                                     value={this.state.room}
                                     onChange={this.handleChange}
-                                    placeholder="Specifikujte místnost v budově" />
+                                    placeholder="Specifikujte místnost v budově">
+                                    <option value={0}>Vyber místnost</option>
+                                    {this.generateRoomOptions()}
+                                </Form.Control>
                             </Form.Group>
                             <Form.Group controlId="note">
                                 <Form.Label>Poznámka:</Form.Label>
                                 <Form.Control
-                                    value={this.state.room}
+                                    value={this.state.note}
                                     onChange={this.handleChange}
                                     placeholder="Zadejte poznámku k objednávce" />
+                            </Form.Group>
+                            <Form.Group controlId="deliveryTIme">
+                                <Form.Label>*Čas doručení:</Form.Label>
+                                <DateTime onChange={handleDate2} />
                             </Form.Group>
                             <Button
                                 onClick={this.submit}
@@ -137,6 +255,8 @@ class Basket extends Component{
                         </Form>
                     </Col>
                 </Row>
+                {this.errorMessage()}
+                {this.successMessage()}
                 <Footer/>
             </div>
         );

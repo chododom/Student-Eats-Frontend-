@@ -23,7 +23,7 @@ export default class Login extends Component {
         this.setState({
             [event.target.id]: event.target.value
         });
-    }
+    };
 
     validateForm() {
         return this.state.username.length > 0 && this.state.password.length > 0;
@@ -51,7 +51,6 @@ export default class Login extends Component {
     };
 
     render() {
-
         return (
             <div className="Login">
                 <div className="contright-header"><p>Přihlášení</p></div>

@@ -30,17 +30,25 @@ export default class Registration extends Component{
         this.setState({
             [event.target.id]: event.target.value
         });
-    }
+    };
 
+    /**
+     * checks whether all the attributes have been filled in
+     * @returns {boolean}
+     */
     validateForm() {
         return this.state.username.length > 0
             && this.state.password.length > 0
             && this.state.name.length > 0
             && this.state.surname.length > 0
             && this.state.telNumber.length > 0
-            && this.state.password == this.state.passwordAgain;
+            && this.state.password === this.state.passwordAgain;
     }
 
+    /**
+     * outputs success message during the proper time
+     * @returns {*}
+     */
     successMessage(){
         if ( this.state.success ){
             return (
@@ -51,16 +59,11 @@ export default class Registration extends Component{
        }
     }
 
-    successMessage(){
-        if ( this.state.success ){
-            return (
-                <Alert variant="success">
-                    <Alert.Heading>Byl jste úspěšně registrován</Alert.Heading>
-                </Alert>
-            )
-        }
-    }
 
+    /**
+     * outputs error message during the proper time
+     * @returns {*}
+     */
     errorMessage(){
         if ( this.state.error ){
             return (
@@ -71,6 +74,10 @@ export default class Registration extends Component{
         }
     }
 
+    /**
+     * handles submit of the form and sends data to the backend with a request to create a new user
+     * @param event
+     */
     handleSubmit = event => {
         event.preventDefault();
         console.log(this.state.username);
@@ -91,19 +98,12 @@ export default class Registration extends Component{
                 password: password
             })
             .then((response) => {
-                console.log("HAHAHA")
                 status = response.status;
-                console.log("Status", status)
                 if ( status === 201 ) {
                     this.setState({success: true});
                     this.setState({error: false});
-                    return
                 }
-                console.log("Status2", response.status)
             })
-            .catch(function (error) {
-                console.log(error);
-            });
     };
 
 

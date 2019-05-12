@@ -26,7 +26,7 @@ class MenuMenza extends Component{
 
         switch (this.props.location.pathname) {
             case "/technicka_menza":
-                this.setState({canteenId: 0}, callback);
+                this.setState({canteenId: 4}, callback);
                 break;
             case "/masarykova_kolej":
                 this.setState({canteenId: 1}, callback);
@@ -61,7 +61,6 @@ class MenuMenza extends Component{
         let selected = this.state.items.filter((item)=>{
             return item.id === index;
         })[0];
-        // console.log(localStorage.getItem("userId"));
         this.props.addFood(selected);
     };
     render(){
@@ -75,7 +74,7 @@ class MenuMenza extends Component{
                     <Footer/>
                 </div>
             );
-        }else{
+        } else{
             return (
                 <div>
                     <Navigation />
@@ -97,6 +96,7 @@ function mapDispatchToProps(dispatch){
 }
 
 function mapStateToProps(state){
+    console.log(state)
     return state
 }
 

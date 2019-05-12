@@ -38,6 +38,10 @@ export default class Delivery extends Component{
      */
     generateContent(){
         let component = this;
+        /**
+         * handles a button when user decides which order he wants to accept
+         * @param index
+         */
         const acceptDelivery = function(index){
             let url = "/order/" + index + "/accept";
             let data = {id: index};
@@ -47,6 +51,11 @@ export default class Delivery extends Component{
                     component.loadOrders();
                 });
         };
+        /**
+         * loads a food from json to string and outputs it to the table
+         * @param foodList - an array of food items
+         * @returns {*}
+         */
         const loadFood = function(foodList){
             return foodList.map(function (item, index) {
                 return (
@@ -82,7 +91,7 @@ export default class Delivery extends Component{
     }
 
     /**
-     * initializes table and its header than calls generateContent method
+     * initializes table and its header than calls generateDeliveries method
      * @returns {*}
      */
     showDeliveries(){
