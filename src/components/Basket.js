@@ -37,7 +37,7 @@ class Basket extends Component{
         this.setState({
             [event.target.id]: event.target.value
         });
-    }
+    };
 
     getFoodInOrder(){
         return this.state.foods.map((item) => {

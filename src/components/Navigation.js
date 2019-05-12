@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+
 import {
-    Route,
     NavLink,
-    HashRouter
 } from "react-router-dom";
 import MenuMenza from "../views/MenuMenza";
 import Profile from "./Profile";
@@ -24,8 +23,8 @@ export default class Navigation extends Component{
                             <NavDropdown.Item ><NavLink to="/studentsky_dum">Studentský dům</NavLink></NavDropdown.Item>
                             <NavDropdown.Item ><NavLink to="/pizzeria_LaFontanella">Pizzeria La Fontanella</NavLink></NavDropdown.Item>
                         </NavDropdown>
-                        { localStorage.getItem("username") != null && localStorage.getItem("username") !== 'undefined' &&  <NavLink to="/donaska">Donáška</NavLink>}
-                        { localStorage.getItem("username") != null && localStorage.getItem("username") !== 'undefined' &&  <NavLink to="/kosik">Košík</NavLink>}
+                        { localStorage.getItem("username") != null && localStorage.getItem("username") !== 'undefined' &&  <Nav.Link href="/donaska">Donáška</Nav.Link>}
+                        { localStorage.getItem("username") != null && localStorage.getItem("username") !== 'undefined' &&  <Nav.Link href="/kosik">Košík</Nav.Link>}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

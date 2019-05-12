@@ -9,7 +9,6 @@ import {steaGet} from "../services/ApiResource.js";
 export default class Profile extends Component {
 
     constructor(props) {
-        // console.log("Profile constructor");
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
@@ -19,24 +18,21 @@ export default class Profile extends Component {
         };
     }
 
+    /**
+     * loads data for a logged-in user
+     */
     getData() {
-        /**
-         *  loads data for a logged-in user
-         */
-        // console.log("Username", localStorage.getItem("username"));
-        // console.log("Token", localStorage.getItem("token"));
         let url = "/user/" + localStorage.getItem("username");
-        // console.log(url);
         steaGet(url)
             .then(results => this.setState({userData: results.data}))
             .then(results => this.setState({dataSet: true}));
-        // console.log(this.state.dataSet);
     }
 
+    /**
+     * loads personal data from userData storage initialized by getData method
+     * @returns {*}
+     */
     generateData() {
-        /**
-         * loads personal data from userData storage initialized by getData method
-         */
         if (this.state.userData == null)
             return <p>No user data</p>;
         return <div>
@@ -46,10 +42,10 @@ export default class Profile extends Component {
         </div>
     }
 
+    /**
+     * handles log out button
+     */
     handleSubmit = (event) => {
-        /**
-         * handles log out button
-         */
         event.preventDefault();
         this.setState({dataSet: false});
         localStorage.removeItem("username");

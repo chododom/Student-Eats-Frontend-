@@ -16,7 +16,6 @@ import 'react-bootstrap/';
 import HomePage from "./views/HomePage";
 import MenuMenza from "./views/MenuMenza";
 import ErrorURL from './views/ErrorURL.js'
-import Donaska from "./views/Donaska";
 import Registration from "./components/Registration"
 import Basket from './components/Basket'
 import {Provider} from 'react-redux'
