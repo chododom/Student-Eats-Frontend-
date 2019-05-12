@@ -68,7 +68,6 @@ export default class Profile extends Component {
                         </div>
                     </Col>
                 </Row>
-                <p>Košík</p>
             </div>
         );
     }

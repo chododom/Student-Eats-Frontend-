@@ -5,9 +5,11 @@ import Navigation from "../components/Navigation";
 import RightContainer from "../components/RightContainer";
 import MenuContainer from "../components/MenuContainer";
 import {steaGet} from "../services/ApiResource.js";
+import { connect } from 'react-redux'
+import {ADD_FOOD, addFood} from "../actions/basket_actions";
 
 
-export default class MenuMenza extends Component{
+class MenuMenza extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -56,9 +58,11 @@ export default class MenuMenza extends Component{
 
     }
     addItemToCart = (index) => {
-        console.log(index);
-        console.log(localStorage.getItem("userId"));
-        // todo - add items to cart
+        let selected = this.state.items.filter((item)=>{
+            return item.id === index;
+        })[0];
+        // console.log(localStorage.getItem("userId"));
+        this.props.addFood(selected);
     };
     render(){
         if (!this.state.isLoading && this.state.items !== undefined){
@@ -85,3 +89,16 @@ export default class MenuMenza extends Component{
 
     }
 }
+
+function mapDispatchToProps(dispatch){
+    return({
+        addFood: (payload) => {dispatch(addFood(payload))}
+    })
+}
+
+function mapStateToProps(state){
+    return state
+}
+
+MenuMenza = connect(mapStateToProps, mapDispatchToProps)(MenuMenza);
+export default MenuMenza;

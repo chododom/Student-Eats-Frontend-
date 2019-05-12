@@ -10,3 +10,9 @@ export function steaGet(url, options = {}){
     options.headers.authorization = localStorage.getItem("token");
     return axios.get(BASE_URL + url, options);
 }
+
+export function steaPost(url, data, options = {}){
+    if(!options.headers)options.headers = {};
+    options.headers.authorization = localStorage.getItem("token");
+    return axios.post(BASE_URL + url, data, options);
+}
