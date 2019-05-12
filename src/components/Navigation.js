@@ -25,6 +25,7 @@ export default class Navigation extends Component{
                         </NavDropdown>
                         { localStorage.getItem("username") != null && localStorage.getItem("username") !== 'undefined' &&  <Nav.Link href="/donaska">Donáška</Nav.Link>}
                         { localStorage.getItem("username") != null && localStorage.getItem("username") !== 'undefined' &&  <Nav.Link href="/kosik">Košík</Nav.Link>}
+                        { localStorage.getItem("username") != null && localStorage.getItem("username") !== 'undefined' &&  <Nav.Link href="/moje_donasky">Moje donášky</Nav.Link>}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

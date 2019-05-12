@@ -4,11 +4,9 @@ import Navigation from './Navigation';
 import Footer from './Footer/Footer'
 import Button from "react-bootstrap/Button";
 import Table from 'react-bootstrap/Table'
-
 import {steaGet} from "../services/ApiResource";
+import {steaPost} from "../services/ApiResource";
 import {isAuthenticated} from "../services/ApiResource";
-import axios from "axios";
-import {BASE_URL} from "../config/environment";
 
 /**
  * class for big basket /kosik
@@ -40,22 +38,12 @@ export default class Delivery extends Component{
      */
     generateContent(){
         const acceptDelivery = function(index){
-            console.log(index);
-            var options = {};
-            options.headers = {};
-            options.id = index;
-            options.headers.authorization = localStorage.getItem("token");
-            let url = BASE_URL + "/order/" + index + "/accept";
-            axios.post(url, options)
-                .then((response) => {
-                    console.log(response)
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+            let url = "/order/" + index + "/accept";
+            let data = {id: index};
+            steaPost(url, data)
         };
         const loadFood = function(foodList){
-            let out = foodList.map(function (item, index) {
+            return foodList.map(function (item, index) {
                 return (
                     <span>
                         {index + 1}. {item.name}
@@ -63,15 +51,13 @@ export default class Delivery extends Component{
                     </span>
                 )
             });
-            return out
         };
 
         /**
          * generates table filled with deliveries
          * @type {any[]}
          */
-        let itemsList = this.state.deliveries.map(function(item, index){
-            console.log(item);
+        return this.state.deliveries.map(function(item, index){
             if ( item.orderState === "PLACED" ) {
                 return <tr>
                     <td>{index + 1}</td>
@@ -88,7 +74,6 @@ export default class Delivery extends Component{
                 </tr>
             }
         });
-        return itemsList
     }
 
     /**
