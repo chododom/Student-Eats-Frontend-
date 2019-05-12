@@ -18,7 +18,6 @@ import MenuMenza from "./views/MenuMenza";
 import ErrorURL from './views/ErrorURL.js'
 import Registration from "./components/Registration"
 import Basket from './components/Basket'
-import Delivery from './components/Delivery'
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import steaApp from "./reducers/reducers";
