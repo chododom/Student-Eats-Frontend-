@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Food from "../Food";
 import Col from "react-bootstrap/Col";
 import {NavLink} from "react-router-dom";
+import {removeFood} from "../../actions/basket_actions";
 
 class Cart extends Component {
     constructor(props) {
@@ -18,7 +19,7 @@ class Cart extends Component {
                         <p>Košík</p>
                         <ul>
                             {this.props.basket.map((food) => {
-                                return (<li><Food food={food.food}/></li>)
+                                return (<li><Food food={food.food}/><button className={"btn btn-danger"} onClick={this.removeClickHandler.bind(this, food.food.id)}>X</button></li>)
                             })}
                         </ul>
                         <b>{this.props.basket.reduce((accumulator, currentValue) => {return accumulator + currentValue.food.price}, 0)} Kč</b>
@@ -28,11 +29,21 @@ class Cart extends Component {
             </div>
         )
     }
+
+    removeClickHandler(id) {
+        this.props.removeFood(id);
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return({
+        removeFood: (payload) => {dispatch(removeFood(payload))}
+    })
 }
 
 function mapStateToProps(state) {
     return ({basket: state.basket})
 }
 
-Cart = connect(mapStateToProps)(Cart);
+Cart = connect(mapStateToProps, mapDispatchToProps)(Cart);
 export default Cart;

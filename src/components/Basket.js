@@ -11,6 +11,7 @@ import { connect } from 'react-redux'
 import {steaGet, steaPost} from "../services/ApiResource";
 import DateTime from 'react-datetime';
 import Alert from "react-bootstrap/Alert";
+import {removeAll} from "../actions/basket_actions";
 
 /**
  * class for big basket /kosik
@@ -114,7 +115,9 @@ class Basket extends Component{
         };
         steaPost("/order", order).then(
             () => {
+                this.props.removeAll();
                 this.setState({success: true});
+
         },
         (error) => {
                 console.log(error);
@@ -262,5 +265,11 @@ function mapStateToProps(state){
 return ({basket: state.basket})
 }
 
-Basket = connect(mapStateToProps)(Basket);
+function mapDispatchToProps(dispatch){
+    return({
+        removeAll: () => {dispatch(removeAll())}
+    })
+}
+
+Basket = connect(mapStateToProps, mapDispatchToProps)(Basket);
 export default Basket;

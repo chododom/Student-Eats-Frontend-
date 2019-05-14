@@ -21,7 +21,6 @@ export default class MenuContainer extends Component{
             obj.props.cartAdd(index);
         };
         let itemsList = items.map(function(item){
-            console.log(item.id);
             return <Col key={item.id}>
                 <div className="panel panel-primary">
                     <div className="panel-body"><img src={item.picture}
