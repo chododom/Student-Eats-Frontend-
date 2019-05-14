@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import {
-    ADD_FOOD
+    ADD_FOOD, REMOVE_FOOD, REMOVE_ALL
 } from '../actions/basket_actions'
 
 function basket(state = [], action) {
@@ -12,7 +12,13 @@ function basket(state = [], action) {
                     food: action.food
                 }
             ];
-
+        case REMOVE_FOOD:
+            return state.filter((food) => {
+                    return food.food.id !== action.id
+                })
+            ;
+        case REMOVE_ALL:
+            return [];
         default:
             return state
     }
