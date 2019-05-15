@@ -4,6 +4,11 @@ import Profile from "./Profile";
 import Login from "./Login";
 import Cart from "./Cart/Cart";
 
+/**
+ * component displaying the right container
+ * if the user is logged in, then it displays profile and cart components
+   otherwise shows the login component
+ */
 export default class RightContainer extends Component{
     constructor(props) {
         super(props);
