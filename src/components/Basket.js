@@ -20,14 +20,14 @@ class Basket extends Component{
 
     constructor(props){
         super(props);
-        let foodIds = props.basket.map((item) => { return item.food.id});
+        let foodIds = props.basket.foods.map((item) => { return item.food.id});
         // this.getFoodInOrder = this.getFoodInOrder.bind(this);
         this.state = {
             success: false,
             error: false,
             buildings: [],
             rooms: [],
-            foods: props.basket,
+            foods: props.basket.foods,
             foodIds: foodIds,
             name: "",
             surname: "",

@@ -32,7 +32,7 @@ export default class MenuContainer extends Component{
                             <li className="list-meal">
                                 <Button variant="danger"
                                         type="button"
-                                        //disabled={localStorage.getItem("userId") == null || localStorage.getItem("userId") === 'undefined'}
+                                        disabled={!obj.props.active}
                                         key={item.id}
                                         onClick={() => handler(item.id)}
                                         >+</Button>
@@ -45,7 +45,6 @@ export default class MenuContainer extends Component{
         return  <Row className="foodRow" >{ itemsList }</Row>
     }
     foods(obj){
-        console.log(this.props.food);
         var renderer = [];
         var tmpItems = [];
         this.props.food.map((item, index) => {
