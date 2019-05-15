@@ -3,20 +3,16 @@ import Jumbotron from "react-bootstrap/es/Jumbotron";
 import logoAlpha from '../../assets/logo_alpha.png'
 import {NavLink} from "react-router-dom";
 
+/**
+ * represents a basic Footer component
+ */
 export default class Footer extends Component{
-
     constructor(props) {
         super(props);
         this.state = {
             isLoggedIn: false,
         };
     }
-    toggleHidden () {
-        this.setState({
-            isLoggedIn: !this.state.isLoggedIn
-        })
-    }
-
     render() {
         return (
             <Jumbotron id={'FooterWrapper'}>

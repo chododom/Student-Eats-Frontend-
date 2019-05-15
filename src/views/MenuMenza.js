@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Navigation from "../components/Navigation/Navigation";
-import RightContainer from "../components/RightContainer";
-import MenuContainer from "../components/MenuContainer";
+import RightContainer from "../components/RightContainer/RightContainer";
+import MenuContainer from "../components/MenuContainer/MenuContainer";
 import {steaGet} from "../services/ApiResource.js";
 import { connect } from 'react-redux'
 import {addFood} from "../actions/basket_actions";
 
-
+/**
+ * component is shown on all the menu URLs (eg. /technicka_menza)
+ */
 class MenuMenza extends Component{
     constructor(props) {
         super(props);
@@ -31,16 +33,12 @@ class MenuMenza extends Component{
         }
     }
 
+    /**
+     * switch for the menza ids and names
+     * @param callback
+     */
     getCanteenId(callback){
-        let url = '/canteen';
-        steaGet(url)
-            .then(results => console.log("Canteen", results));
-
         switch (this.props.location.pathname) {
-            case "/technicka_menza":
-                this.setState({canteenId: 4}, callback);
-                this.setState({canteenName: "v Technické menze"});
-                break;
             case "/masarykova_kolej":
                 this.setState({canteenId: 1}, callback);
                 this.setState({canteenName: "na Masasrykově koleji"});
@@ -53,9 +51,16 @@ class MenuMenza extends Component{
                 this.setState({canteenId: 3}, callback);
                 this.setState({canteenName: "v Pizzerii LaFontannella"});
                 break;
+            case "/technicka_menza":
+                this.setState({canteenId: 4}, callback);
+                this.setState({canteenName: "v Technické menze"});
+                break;
         }
     }
 
+    /**
+     * loads and saves the current menu of the specific caneen
+     */
     getItems(){
         let url = '/canteen/' + this.state.canteenId + '/menu';
         steaGet(url)
@@ -64,6 +69,10 @@ class MenuMenza extends Component{
 
     }
 
+    /**
+     * callback function called from the MenuContainer component
+     * @param index - food ID that is to be added to the cart
+     */
     addItemToCart = (index) => {
         let selected = this.state.items.filter((item)=>{
             return item.id === index;

@@ -4,6 +4,13 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+/**
+ * MenuContainer takes care of showing the actual food items given from MenuContainer in props
+ * expects following props:
+ *      - food - list of food items which are to be shown
+ *      - cartAdd - callback function which adds food items to the cart
+ *      - canteenName - used for better user experience
+ */
 export default class MenuContainer extends Component{
     constructor(props) {
         super(props);
@@ -14,9 +21,12 @@ export default class MenuContainer extends Component{
     }
 
     /**
-     * sends parent object information about what food is supposed to be added to cart
-     * */
-    makeCol(items, obj){
+     * creates a row of 3 cols from food list given in the parameter
+     * @param items - list of food items
+     * @param obj - object for the button add handler
+     * @returns {*} a Row of 3 Cols
+     */
+    makeRow(items, obj){
         const handler = function(index){
             obj.props.cartAdd(index);
         };
@@ -32,7 +42,7 @@ export default class MenuContainer extends Component{
                             <li className="list-meal">
                                 <Button variant="danger"
                                         type="button"
-                                        disabled={!obj.props.active}
+                                        //disabled={localStorage.getItem("userId") == null || localStorage.getItem("userId") === 'undefined'}
                                         key={item.id}
                                         onClick={() => handler(item.id)}
                                         >+</Button>
@@ -44,20 +54,26 @@ export default class MenuContainer extends Component{
         });
         return  <Row className="foodRow" >{ itemsList }</Row>
     }
+
+    /**
+     * method that generates food items from props.food to the component
+     * @param obj - object with the props.food parameter
+     * @returns {Array} - array of Rows
+     */
     foods(obj){
-        var renderer = [];
-        var tmpItems = [];
+        let renderer = [];
+        let tmpItems = [];
         this.props.food.map((item, index) => {
             tmpItems.push(item);
             if ( index % 3 === 2 ) {
                 renderer.push(
-                    this.makeCol(tmpItems, obj));
+                    this.makeRow(tmpItems, obj));
                 tmpItems = [];
             }
         });
         if ( tmpItems . length > 0 )
             renderer.push(
-                this.makeCol(tmpItems, obj));
+                this.makeRow(tmpItems, obj));
         return renderer;
     }
     render() {

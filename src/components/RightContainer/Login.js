@@ -1,17 +1,19 @@
 import React, {Component} from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import axios from "axios";
-import {BASE_URL} from "../config/environment";
+import axios from "axios/index";
+import {BASE_URL} from "../../config/environment";
 import {NavLink} from "react-router-dom";
 
 const login_url = BASE_URL + "/login";
 
-
+/**
+ * component which takes care of the user login
+ */
 export default class Login extends Component {
     constructor(props) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
         this.state = {
             password: "",
             username: "",
@@ -29,7 +31,12 @@ export default class Login extends Component {
         return this.state.username.length > 0 && this.state.password.length > 0;
     }
 
-    handleSubmit = event => {
+    /**
+     * This component handles login submit and if the user information is correct then saves the user token
+       and the user is logged in.
+     * @param event
+     */
+    handleLoginSubmit = event => {
         event.preventDefault();
         let username = this.state.username;
         let password = this.state.password;
@@ -45,9 +52,6 @@ export default class Login extends Component {
                 status = response.status;
                 this.props.callbackFromParent(username);
             })
-            .catch(function (error) {
-                console.log(error);
-            });
     };
 
     render() {
@@ -76,7 +80,7 @@ export default class Login extends Component {
                     <Button
                         variant="secondary"
                         type="submit"
-                        onClick={this.handleSubmit}
+                        onClick={this.handleLoginSubmit}
                         disabled={!this.validateForm()}>
                         Přihlásit se</Button>
                 </Form>

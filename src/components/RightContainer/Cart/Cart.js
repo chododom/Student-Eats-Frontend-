@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import Row from "react-bootstrap/Row";
-import Food from "../Food";
+import Food from "./Food";
 import Col from "react-bootstrap/Col";
 import {NavLink} from "react-router-dom";
-import {removeFood} from "../../actions/basket_actions";
+import {removeFood} from "../../../actions/basket_actions";
 
+/**
+ * component rendering cart information
+ */
 class Cart extends Component {
     constructor(props) {
         super(props);

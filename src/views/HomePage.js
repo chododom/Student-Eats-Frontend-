@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navigation from "../components/Navigation/Navigation";
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -13,8 +13,12 @@ import fontanella from '../assets/fontanella.png'
 import {
     NavLink,
 } from "react-router-dom";
-import RightContainer from "../components/RightContainer";
+import RightContainer from "../components/RightContainer/RightContainer";
 
+/**
+ * the root component
+ * component is shown on this URL - /
+ */
 export default class HomePage extends Component{
     constructor(props){
         super(props);

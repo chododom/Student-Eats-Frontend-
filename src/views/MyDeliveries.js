@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Header from './Header';
-import Navigation from './Navigation/Navigation';
-import Footer from './Footer/Footer'
+import Header from '../components/Header/Header';
+import Navigation from '../components/Navigation/Navigation';
+import Footer from '../components/Footer/Footer'
 import Button from "react-bootstrap/Button";
 import Table from 'react-bootstrap/Table'
 import {steaGet} from "../services/ApiResource";
@@ -9,7 +9,8 @@ import {steaPost} from "../services/ApiResource";
 import {isAuthenticated} from "../services/ApiResource";
 
 /**
- * class for big basket /kosik
+ * component showing users current orders and delivery commitments
+ * component is shown on this URL - /moje_donasky
  */
 export default class MyDeliveries extends Component{
     constructor(props) {
@@ -31,7 +32,7 @@ export default class MyDeliveries extends Component{
                 this.setState({deliveries: results.data});
                 this.setState({hasLoaded: true});
             });
-        url = "/user/" + localStorage.getItem("username") +"/accepted"; //todo - change this to the new endpoint - should work after
+        url = "/user/" + localStorage.getItem("username") +"/active";
         steaGet(url)
             .then(results => {
                 console.log(results);
@@ -158,7 +159,7 @@ export default class MyDeliveries extends Component{
          * generates table filled with deliveries
          * @type {any[]}
          */
-        return this.state.deliveries.map(function(item, index){
+        return this.state.orders.map(function(item, index){
             return <tr>
                 <td>{index + 1}</td>
                 <td>{item.menu.canteen.name}</td>

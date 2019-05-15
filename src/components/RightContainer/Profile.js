@@ -2,10 +2,13 @@ import React, {Component} from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import '../index.css'
-import {steaGet} from "../services/ApiResource.js";
+import '../../index.css'
+import {steaGet} from "../../services/ApiResource.js";
 
 
+/**
+ * component rendering user data - for logged in users only
+ */
 export default class Profile extends Component {
     constructor(props) {
         super(props);

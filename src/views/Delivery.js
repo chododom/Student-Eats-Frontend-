@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Header from './Header';
-import Navigation from './Navigation/Navigation';
-import Footer from './Footer/Footer'
+import Header from '../components/Header/Header';
+import Navigation from '../components/Navigation/Navigation';
+import Footer from '../components/Footer/Footer'
 import Button from "react-bootstrap/Button";
 import Table from 'react-bootstrap/Table'
 import {steaGet} from "../services/ApiResource";
@@ -11,7 +11,8 @@ import Alert from 'react-bootstrap/Alert'
 
 
 /**
- * class for big basket /kosik
+ * component representing and showing all the delivery possibilities which can be accepted by the courier
+ * component is shown on this URL - /donaska
  */
 export default class Delivery extends Component{
     constructor(props) {
@@ -42,6 +43,7 @@ export default class Delivery extends Component{
      */
     generateContent(){
         let component = this;
+
         /**
          * handles a button when user decides which order he wants to accept
          * @param index
@@ -61,6 +63,7 @@ export default class Delivery extends Component{
                     component.setState({error: true});
                 })
         };
+
         /**
          * loads a food from json to string and outputs it to the table
          * @param foodList - an array of food items
