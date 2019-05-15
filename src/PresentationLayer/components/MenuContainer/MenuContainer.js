@@ -16,8 +16,18 @@ export default class MenuContainer extends Component{
         super(props);
         this.state = {
             isLoading: false,
-            foodItems: []
+            foodItems: [],
+            day: "",
+            month: "",
+            year: ""
         };
+    }
+
+    makeDate(){
+        var date =  new Date();
+        this.state.day = date.getDate();
+        this.state.month = date.getMonth() + 1;
+        this.state.year = date.getFullYear();
     }
 
     /**
@@ -79,7 +89,8 @@ export default class MenuContainer extends Component{
     render() {
         return (
             <Container id="MenuContainer">
-                <div className="menu-header"><p>Dnes 22.4.2019 se {this.props.canteenName } se podávají tato jídla</p></div>
+                {this.makeDate()}
+                <div className="menu-header"><p>Dnes {this.state.day}.{this.state.month}.{this.state.year} se {this.props.canteenName } se podávají tato jídla</p></div>
                 {this.foods(this)}
             </Container>
         );
