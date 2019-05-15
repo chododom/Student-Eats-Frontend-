@@ -14,20 +14,14 @@ import Col from 'react-bootstrap/Col';
 export default class MenuContainer extends Component{
     constructor(props) {
         super(props);
+        var date = new Date();
         this.state = {
             isLoading: false,
             foodItems: [],
-            day: "",
-            month: "",
-            year: ""
+            day: date.getDate(),
+            month: date.getMonth() + 1,
+            year: date.getFullYear()
         };
-    }
-
-    makeDate(){
-        var date =  new Date();
-        this.state.day = date.getDate();
-        this.state.month = date.getMonth() + 1;
-        this.state.year = date.getFullYear();
     }
 
     /**
@@ -89,7 +83,6 @@ export default class MenuContainer extends Component{
     render() {
         return (
             <Container id="MenuContainer">
-                {this.makeDate()}
                 <div className="menu-header"><p>Dnes {this.state.day}.{this.state.month}.{this.state.year} se {this.props.canteenName } se podávají tato jídla</p></div>
                 {this.foods(this)}
             </Container>
