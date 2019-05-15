@@ -7,6 +7,9 @@ import {
     NavLink,
 } from "react-router-dom";
 
+/**
+ * Navigation component rendering the main navigation - uses react-bootstrap NavBar component
+ */
 export default class Navigation extends Component{
     render() {
         return (

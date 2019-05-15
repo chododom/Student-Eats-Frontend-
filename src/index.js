@@ -9,21 +9,21 @@ import {
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './components/Footer/Footer.css'
-import './components/Cart/Cart.css'
+import './components/RightContainer/Cart/Cart.css'
 import './components/Navigation/myNavBar.css'
 
 import 'react-bootstrap/';
 import HomePage from "./views/HomePage";
 import MenuMenza from "./views/MenuMenza";
 import ErrorURL from './views/ErrorURL.js'
-import Registration from "./components/Registration"
-import Basket from './components/Basket'
+import Registration from "./views/Registration"
+import Basket from './views/Basket'
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import steaApp from "./reducers/reducers";
 import {loadState, saveState} from "./localStorage";
-import Delivery from './components/Delivery'
-import MyDeliveries from './components/MyDeliveries'
+import Delivery from './views/Delivery'
+import MyDeliveries from './views/MyDeliveries'
 const persistedState = loadState();
 const store = createStore(steaApp, persistedState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 

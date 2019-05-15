@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import Header from './Header';
-import Navigation from './Navigation/Navigation';
+import Header from '../components/Header/Header';
+import Navigation from '../components/Navigation/Navigation';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import RightContainer from "./RightContainer";
-import Footer from './Footer/Footer'
+import RightContainer from "../components/RightContainer/RightContainer";
+import Footer from '../components/Footer/Footer'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { connect } from 'react-redux'
 import {steaGet, steaPost} from "../services/ApiResource";
-import DateTime from 'react-datetime';
+import DateTime from 'react-datetime/DateTime';
 import Alert from "react-bootstrap/Alert";
 import {removeAll} from "../actions/basket_actions";
 
 /**
- * class for big basket /kosik
+ * component for the big basket /kosik
  */
 class Basket extends Component{
 

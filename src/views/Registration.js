@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import Navigation from "./Navigation/Navigation";
-import Header from "./Header";
-import Footer from "./Footer/Footer";
+import Navigation from "../components/Navigation/Navigation";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import axios from "axios";
+import axios from "axios/index";
 import {BASE_URL} from "../config/environment";
 import Alert from 'react-bootstrap/Alert'
 const registration_url = BASE_URL + "/user";
 
+/**
+ * component handling user registration with the control of the username duplication problem
+ */
 export default class Registration extends Component{
     constructor(props){
         super(props);
