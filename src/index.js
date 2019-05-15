@@ -21,7 +21,7 @@ import Basket from './PresentationLayer/views/Basket'
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import steaApp from "./BussinessLayer/reducers/reducers";
-import {loadState, saveState} from "./localStorage";
+import {loadState, saveState} from "./BussinessLayer/localStorage";
 import Delivery from './PresentationLayer/views/Delivery'
 import MyDeliveries from './PresentationLayer/views/MyDeliveries'
 const persistedState = loadState();
