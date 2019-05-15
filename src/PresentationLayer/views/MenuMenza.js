@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
-import Navigation from "../components/Navigation/Navigation";
-import RightContainer from "../components/RightContainer/RightContainer";
-import MenuContainer from "../components/MenuContainer/MenuContainer";
-import {steaGet} from "../services/ApiResource.js";
+import Header from "../../PresentationLayer/components/Header/Header";
+import Footer from "../../PresentationLayer/components/Footer/Footer";
+import Navigation from "../../PresentationLayer/components/Navigation/Navigation";
+import RightContainer from "../../PresentationLayer/components/RightContainer/RightContainer";
+import MenuContainer from "../../PresentationLayer/components/MenuContainer/MenuContainer";
+import {steaGet} from "../../BussinessLayer/services/ApiResource.js";
 import { connect } from 'react-redux'
-import {addFood} from "../actions/basket_actions";
+import {addFood} from "../../BussinessLayer/actions/basket_actions";
 
 /**
  * component is shown on all the menu URLs (eg. /technicka_menza)

@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import Header from '../components/Header/Header';
-import Navigation from '../components/Navigation/Navigation';
+import Header from '../../PresentationLayer/components/Header/Header';
+import Navigation from '../../PresentationLayer/components/Navigation/Navigation';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import RightContainer from "../components/RightContainer/RightContainer";
-import Footer from '../components/Footer/Footer'
+import RightContainer from "../../PresentationLayer/components/RightContainer/RightContainer";
+import Footer from '../../PresentationLayer/components/Footer/Footer'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { connect } from 'react-redux'
-import {steaGet, steaPost} from "../services/ApiResource";
+import {steaGet, steaPost} from "../../BussinessLayer/services/ApiResource";
 import DateTime from 'react-datetime/DateTime';
 import Alert from "react-bootstrap/Alert";
-import {removeAll} from "../actions/basket_actions";
+import {removeAll} from "../../BussinessLayer/actions/basket_actions";
 
 /**
  * component for the big basket /kosik

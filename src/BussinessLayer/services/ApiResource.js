@@ -1,5 +1,5 @@
 import axios from "axios";
-import {BASE_URL} from "../config/environment";
+import {BASE_URL} from "../../config/environment";
 
 /**
  * checks whether the user is logged in

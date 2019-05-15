@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Jumbotron from "react-bootstrap/es/Jumbotron";
-import logoAlpha from '../../assets/logo_alpha.png'
+import logoAlpha from '../../../assets/logo_alpha.png'
 import {NavLink} from "react-router-dom";
 
 /**

@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from "axios/index";
-import {BASE_URL} from "../../config/environment";
+import {BASE_URL} from "../../../config/environment";
 import {NavLink} from "react-router-dom";
 
 const login_url = BASE_URL + "/login";
