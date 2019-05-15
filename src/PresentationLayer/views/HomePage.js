@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import Navigation from "../components/Navigation/Navigation";
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
+import Navigation from "../../PresentationLayer/components/Navigation/Navigation";
+import Header from "../../PresentationLayer/components/Header/Header";
+import Footer from "../../PresentationLayer/components/Footer/Footer";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import technicka from '../assets/technicka.png'
-import studentsky from '../assets/studentsky.png'
-import masarycka from '../assets/masarycka.png'
-import fontanella from '../assets/fontanella.png'
+import technicka from '../../assets/technicka.png'
+import studentsky from '../../assets/studentsky.png'
+import masarycka from '../../assets/masarycka.png'
+import fontanella from '../../assets/fontanella.png'
+import RightContainer from "../../PresentationLayer/components/RightContainer/RightContainer";
 
 import {
     NavLink,
 } from "react-router-dom";
-import RightContainer from "../components/RightContainer/RightContainer";
 
 /**
  * the root component

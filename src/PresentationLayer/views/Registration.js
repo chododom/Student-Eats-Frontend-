@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Navigation from "../components/Navigation/Navigation";
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
+import Navigation from "../../PresentationLayer/components/Navigation/Navigation";
+import Header from "../../PresentationLayer/components/Header/Header";
+import Footer from "../../PresentationLayer/components/Footer/Footer";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from "axios/index";
-import {BASE_URL} from "../config/environment";
+import {BASE_URL} from "../../config/environment";
 import Alert from 'react-bootstrap/Alert'
 const registration_url = BASE_URL + "/user";
 
