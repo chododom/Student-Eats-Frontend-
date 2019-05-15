@@ -18,11 +18,11 @@ class Cart extends Component {
                     <Col>
                         <p>Košík</p>
                         <ul>
-                            {this.props.basket.map((food) => {
+                            {this.props.basket.foods.map((food) => {
                                 return (<li><Food food={food.food}/><button className={"btn btn-danger"} onClick={this.removeClickHandler.bind(this, food.food.id)}>X</button></li>)
                             })}
                         </ul>
-                        <b>{this.props.basket.reduce((accumulator, currentValue) => {return accumulator + currentValue.food.price}, 0)} Kč</b>
+                        <b>{this.props.basket.foods.reduce((accumulator, currentValue) => {return accumulator + currentValue.food.price}, 0)} Kč</b>
                         <NavLink to="/kosik" className={"btn btn-secondary"}>Přejít k objednávce</NavLink>
                     </Col>
                 </Row>

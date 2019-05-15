@@ -10,8 +10,8 @@ export const REMOVE_ALL = 'REMOVE_ALL';
  * action creators
  */
 
-export function addFood(food) {
-    return { type: ADD_FOOD, food }
+export function addFood(food, canteen) {
+    return { type: ADD_FOOD, food, canteen }
 }
 
 export function removeFood(id) {

@@ -68,8 +68,12 @@ class MenuMenza extends Component{
         let selected = this.state.items.filter((item)=>{
             return item.id === index;
         })[0];
-        this.props.addFood(selected);
+        this.props.addFood(selected, this.state.canteenId);
     };
+
+    canFoodBeSelected(){
+        return this.props.basket.chosenCanteen == null || this.props.basket.chosenCanteen === this.state.canteenId
+    }
 
     render(){
         if (!this.state.isLoading && this.state.items !== undefined){
@@ -77,7 +81,7 @@ class MenuMenza extends Component{
                 <div>
                     <Navigation />
                     <Header/>
-                    <MenuContainer food={this.state.items} cartAdd={this.addItemToCart}  canteenName={this.state.canteenName} />
+                    <MenuContainer food={this.state.items} cartAdd={this.addItemToCart}  canteenName={this.state.canteenName} active={this.canFoodBeSelected()}/>
                     <RightContainer/>
                     <Footer/>
                 </div>
@@ -99,12 +103,12 @@ class MenuMenza extends Component{
 
 function mapDispatchToProps(dispatch){
     return({
-        addFood: (payload) => {dispatch(addFood(payload))}
+        addFood: (food, canteen) => {dispatch(addFood(food, canteen))}
     })
 }
 
 function mapStateToProps(state){
-    return state
+    return ({basket: state.basket})
 }
 
 MenuMenza = connect(mapStateToProps, mapDispatchToProps)(MenuMenza);
