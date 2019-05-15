@@ -4,6 +4,9 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+/**
+ * component which takes care of displaying food items using react-bootstrap to the MenuMenza component
+ */
 export default class MenuContainer extends Component{
     constructor(props) {
         super(props);
