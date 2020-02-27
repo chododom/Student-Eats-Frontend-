@@ -5,6 +5,7 @@
 - Frontend of the app
 - [Backend](https://github.com/chododom/Student-Eats-Backend-)
 
+============
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
