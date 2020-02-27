@@ -1,3 +1,11 @@
+# Student Eats (Frontend)
+
+- Project created as part of a group project in Software Engineering I course at FIT CTU in Prague
+- Food delivery web app based on Uber Eats but using university dining service
+- Frontend of the app
+- [Backend](https://github.com/chododom/Student-Eats-Backend-)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 For development you need NPM - Node package manager
