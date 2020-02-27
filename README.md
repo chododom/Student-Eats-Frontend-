@@ -4,6 +4,7 @@
 - Food delivery web app based on Uber Eats but using university dining service
 - Frontend of the app
 - [Backend](https://github.com/chododom/Student-Eats-Backend-)
+- [Wiki](https://github.com/chododom/Student-Eats-Wiki-)
 
 ============
 
